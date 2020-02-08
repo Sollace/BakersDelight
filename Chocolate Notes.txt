@@ -1,0 +1,14 @@
+- Igniting portals with flaming arrows, and burning entities
+- Add proper hitboxes so you can stand on minecarts
+- Use minecarts as boats in lava
+- Rare ore that spawns with diamonds embedded in dirt
+- Some way to compress coal into diamonds (Make the composter compost coal into diamonds)
+- dirt/grass slabs and stairs
+- Can also do glass stairs.
+- Coloured slime blocks
+- Fried Eggs
+- Boiled Eggs (thrown on bubble columns)
+- Chicken Nuggets
+- Silverfish blocks for more block types
+- Rail Lift
+- Baby Creepers ( https://www.reddit.com/r/PhoenixSC/comments/cuz555/baby_creepers/ )
