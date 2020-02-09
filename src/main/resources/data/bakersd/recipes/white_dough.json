@@ -1,0 +1,18 @@
+{
+  "type": "crafting_shaped",
+  "group": "dough",
+  "pattern": [
+    "efe",
+    "fff",
+    "fwf"
+  ],
+  "key": {
+    "e": { "item": "minecraft:egg" },
+    "f": { "item": "bakersd:white_flour" },
+    "w": { "item": "minecraft:water_bucket" }
+  },
+  "result": {
+    "item": "bakersd:white_dough",
+    "count": 3
+  }
+}

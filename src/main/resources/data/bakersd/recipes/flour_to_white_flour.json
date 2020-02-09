@@ -1,0 +1,9 @@
+{
+  "type": "bakersd:grinding",
+  "ingredients": [
+    { "tag": "bakersd:flours" }
+  ],
+  "result": {
+    "item": "bakersd:white_flour"
+  }
+}

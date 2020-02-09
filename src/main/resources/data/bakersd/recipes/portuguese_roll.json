@@ -1,0 +1,11 @@
+{
+  "type": "crafting_shapeless",
+  "group": "flour",
+  "ingredients": [
+  	{ "item": "bakersd:white_flour" },
+    { "item": "bakersd:bun" }
+  ],
+  "result": {
+    "item": "bakersd:portuguese_roll"
+  }
+}

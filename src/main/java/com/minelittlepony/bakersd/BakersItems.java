@@ -25,6 +25,9 @@ public interface BakersItems {
     Item SOURDOUGH_BREAD = register(new Item(new Item.Settings().food(BakersFoodComponents.SOURDOUGH).group(ItemGroup.FOOD)), "sourdough_bread");
     Item RYE_BREAD = register(new Item(new Item.Settings().food(BakersFoodComponents.RHY).group(ItemGroup.FOOD)), "rye_bread");
     Item BAGUETTE = register(new Item(new Item.Settings().food(BakersFoodComponents.WHEAT).group(ItemGroup.FOOD)), "baguette");
+
+    Item BUN = register(new Item(new Item.Settings().food(BakersFoodComponents.WHOLEGRAIN).group(ItemGroup.FOOD)), "bun");
+
     Item PORTUGUESE_ROLL = register(new Item(new Item.Settings().food(BakersFoodComponents.WHOLEGRAIN).group(ItemGroup.FOOD)), "portuguese_roll");
     Item CIABATTA_BREAD = register(new Item(new Item.Settings().food(BakersFoodComponents.CIABATTA).group(ItemGroup.FOOD)), "ciabatta_bread");
     Item PITA_BREAD = register(new Item(new Item.Settings().food(BakersFoodComponents.WORTH_LESS).group(ItemGroup.FOOD)), "pita_bread");

@@ -1,0 +1,9 @@
+{
+  "type": "bakersd:grinding",
+  "ingredients": [
+    { "item": "minecraft:wheat_seeds" }
+  ],
+  "result": {
+    "item": "bakersd:wheat_flour"
+  }
+}

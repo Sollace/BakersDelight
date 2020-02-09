@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+  	"bakersd:wholegrain_flour",
+    "bakersd:white_flour",
+    "bakersd:brown_flour",
+    "bakersd:wheat_flour"
+  ]
+}
