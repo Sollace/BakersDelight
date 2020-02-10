@@ -1,0 +1,17 @@
+{
+  "type": "crafting_shaped",
+  "group": "dough",
+  "pattern": [
+    "o",
+    "+",
+    "o"
+  ],
+  "key": {
+    "o": { "item": "bakersd:wheat_dough" },
+    "+": { "item": "minecraft:stick" }
+  },
+  "result": {
+    "item": "bakersd:bread_stick",
+    "count": 6
+  }
+}

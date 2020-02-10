@@ -2,12 +2,13 @@
   "type": "crafting_shaped",
   "group": "dough",
   "pattern": [
-    "efe",
+    "eye",
     "fff",
     "fwf"
   ],
   "key": {
     "e": { "item": "minecraft:egg" },
+    "y": { "item": "bakersd:yeast" },
     "f": { "item": "bakersd:wholegrain_flour" },
     "w": { "item": "minecraft:water_bucket" }
   },

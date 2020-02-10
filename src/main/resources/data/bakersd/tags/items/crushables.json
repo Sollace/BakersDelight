@@ -3,6 +3,8 @@
   "values": [
     "minecraft:wheat",
     "minecraft:wheat_seeds",
-    "#bakersd:flours"
+    "#bakersd:flours",
+    "bakersd:corn",
+    "bakersd:rye"
   ]
 }

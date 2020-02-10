@@ -1,5 +1,8 @@
 package com.minelittlepony.bakersd.recipe;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.block.Blocks;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -28,6 +31,12 @@ public class ShapelessGrindingRecipe implements GrindingRecipe {
         this.id = id;
         this.input = input;
         this.output = output;
+    }
+
+    @Override
+    @Environment(EnvType.CLIENT)
+    public ItemStack getRecipeKindIcon() {
+       return new ItemStack(Blocks.GRINDSTONE);
     }
 
     @Override
@@ -63,7 +72,7 @@ public class ShapelessGrindingRecipe implements GrindingRecipe {
 
     @Override
     public boolean fits(int width, int height) {
-        return (width * height) == 2;
+        return (width * height) >= 2;
     }
 
     @Override

@@ -8,12 +8,12 @@
   ],
   "key": {
     "e": { "item": "minecraft:egg" },
-    "y": { "item": "bakersd:yeast" },
-    "f": { "item": "bakersd:wheat_flour" },
+    "y": { "item": "bakersd:baking_soda" },
+    "f": { "item": "bakersd:white_flour" },
     "w": { "item": "minecraft:water_bucket" }
   },
   "result": {
-    "item": "bakersd:wheat_dough",
+    "item": "bakersd:white_soda_bread_dough",
     "count": 3
   }
 }

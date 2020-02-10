@@ -1,0 +1,9 @@
+{
+  "type": "bakersd:grinding",
+  "ingredients": [
+    { "item": "bakersd:rye" }
+  ],
+  "result": {
+    "item": "bakersd:rye_flour"
+  }
+}

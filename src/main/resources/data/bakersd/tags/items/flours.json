@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+  	"bakersd:corn_flour",
+  	"bakersd:rye_flour",
   	"bakersd:wholegrain_flour",
     "bakersd:white_flour",
     "bakersd:brown_flour",

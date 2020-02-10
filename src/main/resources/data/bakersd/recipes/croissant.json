@@ -1,0 +1,16 @@
+{
+  "type": "crafting_shaped",
+  "group": "dough",
+  "pattern": [
+    " oo",
+    "oo ",
+    " oo"
+  ],
+  "key": {
+    "o": { "item": "bakersd:wheat_dough" }
+  },
+  "result": {
+    "item": "bakersd:croissant",
+    "count": 2
+  }
+}

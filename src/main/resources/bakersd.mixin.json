@@ -6,6 +6,7 @@
     "compatibilityLevel": "JAVA_8",
     "client": [
     	"MixinGrindstoneContainer",
-    	"MixinGrindstoneContainer_2"
+    	"MixinGrindstoneContainer_2",
+    	"RemainderSetter"
     ]
 }

@@ -1,0 +1,9 @@
+{
+  "type": "smelting",
+  "ingredient": {
+    "item": "bakersd:white_soda_bread_dough"
+  },
+  "result": "bakersd:soda_bread",
+  "experience": 0.28,
+  "cookingtime": 400
+}

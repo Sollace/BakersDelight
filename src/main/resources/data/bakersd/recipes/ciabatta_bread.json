@@ -1,0 +1,17 @@
+{
+  "type": "crafting_shaped",
+  "group": "dough",
+  "pattern": [
+    "+o+",
+    "oao"
+  ],
+  "key": {
+    "o": { "item": "bakersd:wheat_dough" },
+    "+": { "item": "minecraft:wheat_seeds" },
+    "a": { "item": "bakersd:white_dough" }
+  },
+  "result": {
+    "item": "bakersd:ciabatta_bread",
+    "count": 1
+  }
+}

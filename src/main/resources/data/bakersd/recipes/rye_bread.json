@@ -1,0 +1,15 @@
+{
+  "type": "crafting_shaped",
+  "group": "dough",
+  "pattern": [
+    "ooo",
+    "ooo"
+  ],
+  "key": {
+    "o": { "item": "bakersd:rye_dough" }
+  },
+  "result": {
+    "item": "bakersd:rye_bread",
+    "count": 1
+  }
+}

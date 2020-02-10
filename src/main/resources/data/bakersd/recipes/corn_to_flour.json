@@ -1,0 +1,9 @@
+{
+  "type": "bakersd:grinding",
+  "ingredients": [
+    { "item": "bakersd:corn" }
+  ],
+  "result": {
+    "item": "bakersd:corn_flour"
+  }
+}

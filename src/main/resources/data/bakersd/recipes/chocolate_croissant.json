@@ -1,0 +1,11 @@
+{
+  "type": "crafting_shapeless",
+  "group": "flour",
+  "ingredients": [
+    { "item": "bakersd:croissant" },
+    { "item": "minecraft:cocoa_beans" }
+  ],
+  "result": {
+    "item": "bakersd:chocolate_croissant"
+  }
+}

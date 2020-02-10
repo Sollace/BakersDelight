@@ -1,0 +1,16 @@
+{
+  "type": "crafting_shaped",
+  "group": "dough",
+  "pattern": [
+    "oxo",
+    "xox",
+    "oxo"
+  ],
+  "key": {
+    "o": { "item": "bakersd:wheat_dough" },
+    "x": { "item": "bakersd:wholegrain_flour" }
+  },
+  "result": {
+    "item": "bakersd:tresse"
+  }
+}

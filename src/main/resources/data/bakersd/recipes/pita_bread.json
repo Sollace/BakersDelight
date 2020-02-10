@@ -1,0 +1,14 @@
+{
+  "type": "crafting_shaped",
+  "group": "dough",
+  "pattern": [
+    "ooo"
+  ],
+  "key": {
+    "o": { "item": "bakersd:white_dough" }
+  },
+  "result": {
+    "item": "bakersd:pita_bread",
+    "count": 3
+  }
+}

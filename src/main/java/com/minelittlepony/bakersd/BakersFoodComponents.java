@@ -14,7 +14,7 @@ public interface BakersFoodComponents {
     FoodComponent WHEAT = create(6, 0.8F);
     FoodComponent ENHANCED_WHEAT = create(7, 0.9F);
     FoodComponent SOURDOUGH = create(7, 0.5F);
-    FoodComponent RHY = create(8, 0.9F);
+    FoodComponent RYE = create(8, 0.9F);
     FoodComponent CIABATTA = create(9, 0.4F);
     FoodComponent BANANA = create(1, 1F);
 

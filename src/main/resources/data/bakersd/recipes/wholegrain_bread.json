@@ -1,0 +1,15 @@
+{
+  "type": "crafting_shaped",
+  "group": "dough",
+  "pattern": [
+    "ooo",
+    "ooo"
+  ],
+  "key": {
+    "o": { "item": "bakersd:wholegrain_dough" }
+  },
+  "result": {
+    "item": "bakersd:wholegrain_bread",
+    "count": 1
+  }
+}

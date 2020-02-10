@@ -1,0 +1,9 @@
+{
+  "rolling_pin.donk": {
+  	"category": "player",
+  	"subtitle": "bakersd.subtitle.rolling_pin.donk",
+  	"sounds": [
+  		{ "name": "bakersd:rolling_pin/donk" }
+  	]
+  }
+}

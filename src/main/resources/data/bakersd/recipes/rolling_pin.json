@@ -1,0 +1,16 @@
+{
+  "type": "crafting_shaped",
+  "group": "dough",
+  "pattern": [
+    "  o",
+    " # ",
+    "o  "
+  ],
+  "key": {
+    "o": { "tag": "minecraft:wooden_buttons" },
+    "#": { "tag": "minecraft:planks" }
+  },
+  "result": {
+    "item": "bakersd:rolling_pin"
+  }
+}

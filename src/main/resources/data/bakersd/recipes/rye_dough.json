@@ -9,11 +9,11 @@
   "key": {
     "e": { "item": "minecraft:egg" },
     "y": { "item": "bakersd:yeast" },
-    "f": { "item": "bakersd:wheat_flour" },
+    "f": { "item": "bakersd:rye_flour" },
     "w": { "item": "minecraft:water_bucket" }
   },
   "result": {
-    "item": "bakersd:wheat_dough",
+    "item": "bakersd:rye_dough",
     "count": 3
   }
 }
