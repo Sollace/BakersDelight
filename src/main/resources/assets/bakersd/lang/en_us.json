@@ -13,9 +13,12 @@
   "item.bakersd.yeast": "Yeast",
   "item.bakersd.baking_soda": "Baking Soda",
   "item.bakersd.wholegrain_dough": "Wholegrain Dough",
+  "item.bakersd.rye_dough": "Rye Dough",
+  "item.bakersd.corn_bread_dough": "Cornbread Dough",
   "item.bakersd.white_dough": "White Dough",
   "item.bakersd.brown_dough": "Brown Dough",
   "item.bakersd.wheat_dough": "Wheat Dough",
+  "item.bakersd.white_soda_bread_dough": "White Soda Bread Dough",
   "item.bakersd.wholegrain_bread": "Wholegrain Bread",
   "item.bakersd.white_bread": "White Bread",
   "item.bakersd.brown_bread": "Brown Bread",
@@ -36,5 +39,9 @@
   "item.bakersd.grits": "Grits",
   "item.bakersd.polenta_loaf": "Polenta Loaf",
   "item.bakersd.soda_bread": "Soda Bread",
-  "item.bakersd.tresse": "Tresse"
+  "item.bakersd.tresse": "Tresse",
+  "item.bakersd.bagel": "Bagel",
+  "item.bakersd.pretzel": "Pretzel",
+  "item.bakersd.ginger_bread_man": "Gingerbread Man",
+  "item.bakersd.ginger_bread_woman": "Gingerbread Wo-Man"
 }
