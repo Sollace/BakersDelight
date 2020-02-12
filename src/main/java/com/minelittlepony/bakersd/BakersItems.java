@@ -3,10 +3,13 @@ package com.minelittlepony.bakersd;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterials;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import com.minelittlepony.bakersd.item.FabricToolMaterials;
 import com.minelittlepony.bakersd.item.RollingPinItem;
 
 public interface BakersItems {
@@ -43,7 +46,12 @@ public interface BakersItems {
 
     Item SOURDOUGH_BREAD = register(new Item(new Item.Settings().food(BakersFoodComponents.SOURDOUGH).group(ItemGroup.FOOD)), "sourdough_bread");
     Item RYE_BREAD = register(new Item(new Item.Settings().food(BakersFoodComponents.RYE).group(ItemGroup.FOOD)), "rye_bread");//
-    Item BAGUETTE = register(new Item(new Item.Settings().food(BakersFoodComponents.WHEAT).group(ItemGroup.FOOD)), "baguette");//
+    Item BAGUETTE = register(new SwordItem(new FabricToolMaterials.Builder()
+            .repairIngredient(() -> Ingredient.fromTag(BakersTags.BREADS))
+            .durability(16)
+            .enchantability(15)
+            .level(1)
+            .build(), 2, 8, new Item.Settings().food(BakersFoodComponents.WHEAT).group(ItemGroup.FOOD)), "baguette");//
 
     Item BUN = register(new Item(new Item.Settings().food(BakersFoodComponents.WHOLEGRAIN).group(ItemGroup.FOOD)), "bun");//
 

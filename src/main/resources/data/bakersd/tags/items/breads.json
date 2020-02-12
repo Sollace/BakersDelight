@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "values": [
+  	"minecraft:bread",
+    "bakersd:sourdough_bread",
+    "bakersd:rye_bread",
+    "bakersd:baguette",
+    "bakersd:bun",
+    "bakersd:portuguese_roll",
+    "bakersd:ciabatta_bread",
+    "bakersd:pita_bread",
+    "bakersd:banana_bread",
+    "bakersd:raisin_bread",
+    "bakersd:tortilla",
+    "bakersd:bread_stick",
+    "bakersd:croissant",
+    "bakersd:chocolate_croissant"m
+    "bakersd:grits",
+    "bakersd:polenta_loaf",
+    "bakersd:soda_bread",
+    "bakersd:tresse",
+    "bakersd:bagel",
+    "bakersd:pretzel",
+    "bakersd:ginger_bread_man",
+    "bakersd:ginger_bread_woman"
+  ]
+}
