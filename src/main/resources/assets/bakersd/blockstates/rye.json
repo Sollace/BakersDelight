@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "age=0": { "model": "bakersd:block/rye/stage0" },
+        "age=1": { "model": "bakersd:block/rye/stage1" },
+        "age=2": { "model": "bakersd:block/rye/stage2" },
+        "age=3": { "model": "bakersd:block/rye/stage3" },
+        "age=4": { "model": "bakersd:block/rye/stage4" },
+        "age=5": { "model": "bakersd:block/rye/stage5" },
+        "age=6": { "model": "bakersd:block/rye/stage6" },
+        "age=7": { "model": "bakersd:block/rye/stage7" }
+    }
+}

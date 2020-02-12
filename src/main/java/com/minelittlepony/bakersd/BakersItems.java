@@ -1,5 +1,6 @@
 package com.minelittlepony.bakersd;
 
+import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -14,8 +15,8 @@ import com.minelittlepony.bakersd.item.RollingPinItem;
 
 public interface BakersItems {
 
-    Item CORN = register(new Item(new Item.Settings().group(ItemGroup.MISC)), "corn");
-    Item RYE = register(new Item(new Item.Settings().group(ItemGroup.MISC)), "rye");
+    Item CORN = register(new AliasedBlockItem(BakersBlocks.CORN, new Item.Settings().group(ItemGroup.MISC)), "corn");
+    Item RYE = register(new AliasedBlockItem(BakersBlocks.RYE, new Item.Settings().group(ItemGroup.MISC)), "rye");
     Item RAISINS = register(new Item(new Item.Settings().group(ItemGroup.MISC)), "raisins");
     Item BANANA = register(new Item(new Item.Settings().group(ItemGroup.MISC)), "banana");
 
@@ -68,9 +69,7 @@ public interface BakersItems {
     Item CROISSANT = register(new Item(new Item.Settings().food(BakersFoodComponents.WHEAT).group(ItemGroup.FOOD)), "croissant");//
     Item CHOCOLATE_CROISSANT = register(new Item(new Item.Settings().food(BakersFoodComponents.WHEAT).group(ItemGroup.FOOD)), "chocolate_croissant");//
 
-    // white_corn_bread
-    Item GRITS = register(new Item(new Item.Settings().food(BakersFoodComponents.GOVERNMENT_LOAF).group(ItemGroup.FOOD)), "grits");
-    // yellow_corn_bread
+    Item GRITS = register(new Item(new Item.Settings().food(BakersFoodComponents.GOVERNMENT_LOAF).group(ItemGroup.FOOD)), "grits");//
     Item POLENTA_LOAF = register(new Item(new Item.Settings().food(BakersFoodComponents.WHEAT).group(ItemGroup.FOOD)), "polenta_loaf");//
 
     // https://en.wikipedia.org/wiki/Soda_bread

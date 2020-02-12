@@ -1,7 +1,7 @@
 {
     "textures": {
         "particle": "#texture",
-        "texture": "bakersd:blocks/yeast"
+        "texture": "bakersd:block/yeast"
     },
     "elements": [
         {   "from": [ 4.5, 0, 4.5 ],

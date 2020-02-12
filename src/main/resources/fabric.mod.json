@@ -13,8 +13,11 @@
   "icon": "bakersd_logo.png",
   "environment": "client",
   "entrypoints": {
-    "client": [
+  	"main": [
       "com.minelittlepony.bakersd.Main"
+    ],
+    "client": [
+      "com.minelittlepony.bakersd.Client"
     ]
   },
   "mixins": [

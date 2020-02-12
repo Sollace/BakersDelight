@@ -1,0 +1,11 @@
+{
+  "type": "crafting_shapeless",
+  "group": "dough",
+  "ingredients": [
+    { "item": "bakersd:wheat_dough" },
+    { "item": "bakersd:wheat_dough" },
+    { "item": "bakersd:wheat_dough" },
+    { "item": "minecraft:bowl" }
+  ],
+  "result": { "item": "bakersd:grits" }
+}
