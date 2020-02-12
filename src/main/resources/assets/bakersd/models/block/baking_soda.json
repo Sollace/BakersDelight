@@ -1,0 +1,6 @@
+{
+	"parent": "bakersd:block/yeast",
+    "textures": {
+        "texture": "bakersd:blocks/baking_soda"
+    }
+}

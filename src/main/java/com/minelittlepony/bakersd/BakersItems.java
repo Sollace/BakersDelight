@@ -1,5 +1,6 @@
 package com.minelittlepony.bakersd;
 
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ToolMaterials;
@@ -24,8 +25,8 @@ public interface BakersItems {
     Item BROWN_FLOUR = register(new Item(new Item.Settings().group(ItemGroup.MISC)), "brown_flour");//
     Item WHEAT_FLOUR = register(new Item(new Item.Settings().group(ItemGroup.MISC)), "wheat_flour");//
 
-    Item YEAST = register(new Item(new Item.Settings().group(ItemGroup.MISC)), "yeast");
-    Item BAKING_SODA = register(new Item(new Item.Settings().group(ItemGroup.MISC)), "baking_soda");
+    Item YEAST = register(new BlockItem(BakersBlocks.YEAST, new Item.Settings().group(ItemGroup.MISC)), "yeast");
+    Item BAKING_SODA = register(new BlockItem(BakersBlocks.BAKING_SODA, new Item.Settings().group(ItemGroup.MISC)), "baking_soda");
 
     Item WHOLEGRAIN_DOUGH = register(new Item(new Item.Settings().food(BakersFoodComponents.DOUGH).group(ItemGroup.FOOD)), "wholegrain_dough");//
     Item RYE_DOUGH = register(new Item(new Item.Settings().food(BakersFoodComponents.DOUGH).group(ItemGroup.FOOD)), "rye_dough");//

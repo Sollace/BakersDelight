@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=south": { "model": "bakersd:block/yeast" },
+        "facing=west": { "model": "bakersd:block/yeast", "y": 90 },
+        "facing=north": { "model": "bakersd:block/yeast", "y": 180 },
+        "facing=east": { "model": "bakersd:block/yeast", "y": 270 }
+    }
+}
