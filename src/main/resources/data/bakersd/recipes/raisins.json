@@ -1,0 +1,10 @@
+{
+  "type": "smelting",
+  "group": "baking",
+  "ingredient": {
+    "item": "minecraft:sweet_berries"
+  },
+  "result": "bakersd:raisins",
+  "experience": 0.128,
+  "cookingtime": 700
+}
