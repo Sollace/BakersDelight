@@ -9,6 +9,7 @@ import net.minecraft.util.registry.Registry;
 
 import com.minelittlepony.bakersd.block.BoxBlock;
 import com.minelittlepony.bakersd.block.RyeBlock;
+import com.minelittlepony.bakersd.block.TallCropBlock;
 
 public interface BakersBlocks {
 
@@ -26,7 +27,7 @@ public interface BakersBlocks {
                     () -> BakersItems.RYE
                 ), "rye");
 
-    Block CORN = register(new RyeBlock(FabricBlockSettings.of(Material.PLANT)
+    Block CORN = register(new TallCropBlock(FabricBlockSettings.of(Material.PLANT)
                         .noCollision()
                         .ticksRandomly()
                         .nonOpaque()
