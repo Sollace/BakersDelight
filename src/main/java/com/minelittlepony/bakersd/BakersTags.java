@@ -1,5 +1,6 @@
 package com.minelittlepony.bakersd;
 
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.tag.Tag;
@@ -11,5 +12,8 @@ public interface BakersTags {
     Tag<Item> DOUGHS = TagRegistry.item(new Identifier("bakersd", "doughs"));
     Tag<Item> BREADS = TagRegistry.item(new Identifier("bakersd", "breads"));
 
-    static void bootstrap() {};
+    static void bootstrap() {
+        FuelRegistry.INSTANCE.add(BakersTags.BREADS, 100);
+        FuelRegistry.INSTANCE.add(BakersTags.DOUGHS, 20);
+    };
 }
