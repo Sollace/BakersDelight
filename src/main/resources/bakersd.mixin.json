@@ -4,9 +4,10 @@
     "package": "com.minelittlepony.bakersd.mixin",
     "refmap": "bakersd.mixin.refmap.json",
     "compatibilityLevel": "JAVA_8",
-    "client": [
-    	"MixinGrindstoneContainer",
-    	"MixinGrindstoneContainer_2",
-    	"RemainderSetter"
+    "mixins": [
+        "MixinGrindstoneContainer",
+        "MixinGrindstoneContainer_2",
+        "MixinAbstractFurnaceBlockEntity",
+        "RemainderSetter"
     ]
 }

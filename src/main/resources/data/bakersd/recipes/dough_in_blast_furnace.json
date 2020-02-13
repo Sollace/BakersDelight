@@ -1,0 +1,10 @@
+{
+  "type": "blasting",
+  "group": "baking",
+  "ingredient": {
+  	"tag": "bakersd:doughs"
+  },
+  "experience": 0.11,
+  "cookingTime": 15,
+  "result": "minecraft:charcoal"
+}

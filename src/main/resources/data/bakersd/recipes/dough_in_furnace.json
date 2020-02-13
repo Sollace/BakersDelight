@@ -1,0 +1,10 @@
+{
+  "type": "bakersd:baking",
+  "group": "baking",
+  "ingredient": {
+  	"tag": "bakersd:doughs"
+  },
+  "experience": 0.10,
+  "cookingTime": 115,
+  "result": "bakersd:bun"
+}

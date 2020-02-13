@@ -10,6 +10,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
+import com.minelittlepony.bakersd.item.DoughItem;
 import com.minelittlepony.bakersd.item.FabricToolMaterials;
 import com.minelittlepony.bakersd.item.RollingPinItem;
 
@@ -32,13 +33,13 @@ public interface BakersItems {
     Item YEAST = register(new BlockItem(BakersBlocks.YEAST, new Item.Settings().group(ItemGroup.MISC)), "yeast");
     Item BAKING_SODA = register(new BlockItem(BakersBlocks.BAKING_SODA, new Item.Settings().group(ItemGroup.MISC)), "baking_soda");
 
-    Item WHOLEGRAIN_DOUGH = register(new Item(new Item.Settings().food(BakersFoodComponents.DOUGH).group(ItemGroup.FOOD)), "wholegrain_dough");//
-    Item RYE_DOUGH = register(new Item(new Item.Settings().food(BakersFoodComponents.DOUGH).group(ItemGroup.FOOD)), "rye_dough");//
-    Item CORN_BREAD_DOUGH = register(new Item(new Item.Settings().food(BakersFoodComponents.DOUGH).group(ItemGroup.FOOD)), "corn_bread_dough");//
-    Item WHITE_DOUGH = register(new Item(new Item.Settings().food(BakersFoodComponents.DOUGH).group(ItemGroup.FOOD)), "white_dough");//
-    Item BROWN_DOUGH = register(new Item(new Item.Settings().food(BakersFoodComponents.DOUGH).group(ItemGroup.FOOD)), "brown_dough");//
-    Item WHEAT_DOUGH = register(new Item(new Item.Settings().food(BakersFoodComponents.DOUGH).group(ItemGroup.FOOD)), "wheat_dough");//
-    Item WHITE_SODA_BREAD_DOUGH = register(new Item(new Item.Settings().food(BakersFoodComponents.DOUGH).group(ItemGroup.FOOD)), "white_soda_bread_dough");//
+    Item WHOLEGRAIN_DOUGH = register(new DoughItem(new Item.Settings().food(BakersFoodComponents.DOUGH).group(ItemGroup.FOOD)), "wholegrain_dough");//
+    Item RYE_DOUGH = register(new DoughItem(new Item.Settings().food(BakersFoodComponents.DOUGH).group(ItemGroup.FOOD)), "rye_dough");//
+    Item CORN_BREAD_DOUGH = register(new DoughItem(new Item.Settings().food(BakersFoodComponents.DOUGH).group(ItemGroup.FOOD)), "corn_bread_dough");//
+    Item WHITE_DOUGH = register(new DoughItem(new Item.Settings().food(BakersFoodComponents.DOUGH).group(ItemGroup.FOOD)), "white_dough");//
+    Item BROWN_DOUGH = register(new DoughItem(new Item.Settings().food(BakersFoodComponents.DOUGH).group(ItemGroup.FOOD)), "brown_dough");//
+    Item WHEAT_DOUGH = register(new DoughItem(new Item.Settings().food(BakersFoodComponents.DOUGH).group(ItemGroup.FOOD)), "wheat_dough");//
+    Item WHITE_SODA_BREAD_DOUGH = register(new DoughItem(new Item.Settings().food(BakersFoodComponents.DOUGH).group(ItemGroup.FOOD)), "white_soda_bread_dough");//
 
     Item WHOLEGRAIN_BREAD = register(new Item(new Item.Settings().food(BakersFoodComponents.WHOLEGRAIN).group(ItemGroup.FOOD)), "wholegrain_bread");//
     Item WHITE_BREAD = register(new Item(new Item.Settings().food(BakersFoodComponents.GOVERNMENT_LOAF).group(ItemGroup.FOOD)), "white_bread");//

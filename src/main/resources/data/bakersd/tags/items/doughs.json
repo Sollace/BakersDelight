@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "bakersd:wholegrain_dough",
+    "bakersd:rye_dough",
+    "bakersd:corn_bread_dough",
+    "bakersd:white_dough",
+    "bakersd:brown_dough",
+    "bakersd:wheat_dough",
+    "bakersd:white_soda_bread_dough"
+  ]
+}
