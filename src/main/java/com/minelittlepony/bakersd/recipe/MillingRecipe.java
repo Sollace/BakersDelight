@@ -21,7 +21,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
-public class GrindingRecipe implements Recipe<Inventory> {
+public class MillingRecipe implements Recipe<Inventory> {
 
     private final Identifier id;
 
@@ -29,7 +29,7 @@ public class GrindingRecipe implements Recipe<Inventory> {
 
     private final DefaultedList<Ingredient> input;
 
-    public GrindingRecipe(Identifier id, DefaultedList<Ingredient> input, ItemStack output) {
+    public MillingRecipe(Identifier id, DefaultedList<Ingredient> input, ItemStack output) {
         this.id = id;
         this.input = input;
         this.output = output;
@@ -43,7 +43,7 @@ public class GrindingRecipe implements Recipe<Inventory> {
 
     @Override
     public RecipeType<?> getType() {
-        return BakersRecipes.GRINDING;
+        return BakersRecipes.MILLING;
     }
 
     @Override
@@ -99,12 +99,12 @@ public class GrindingRecipe implements Recipe<Inventory> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return BakersRecipesSerializers.GRINDING;
+        return BakersRecipesSerializers.MILLING;
     }
 
-    public static class Serializer implements RecipeSerializer<GrindingRecipe> {
+    public static class Serializer implements RecipeSerializer<MillingRecipe> {
         @Override
-        public GrindingRecipe read(Identifier identifier, JsonObject jsonObject) {
+        public MillingRecipe read(Identifier identifier, JsonObject jsonObject) {
             DefaultedList<Ingredient> defaultedList = getIngredients(JsonHelper.getArray(jsonObject, "ingredients"));
 
             if (defaultedList.isEmpty()) {
@@ -115,7 +115,7 @@ public class GrindingRecipe implements Recipe<Inventory> {
                 throw new JsonParseException("Too many ingredients for shapeless recipe");
             }
 
-            return new GrindingRecipe(identifier, defaultedList, ShapedRecipe.getItemStack(JsonHelper.getObject(jsonObject, "result")));
+            return new MillingRecipe(identifier, defaultedList, ShapedRecipe.getItemStack(JsonHelper.getObject(jsonObject, "result")));
         }
 
         private static DefaultedList<Ingredient> getIngredients(JsonArray json) {
@@ -132,18 +132,18 @@ public class GrindingRecipe implements Recipe<Inventory> {
         }
 
         @Override
-        public GrindingRecipe read(Identifier id, PacketByteBuf buffer) {
+        public MillingRecipe read(Identifier id, PacketByteBuf buffer) {
             DefaultedList<Ingredient> ingredients = DefaultedList.ofSize(buffer.readVarInt(), Ingredient.EMPTY);
 
             for (int i = 0; i < ingredients.size(); ++i) {
                 ingredients.set(i, Ingredient.fromPacket(buffer));
             }
 
-            return new GrindingRecipe(id, ingredients, buffer.readItemStack());
+            return new MillingRecipe(id, ingredients, buffer.readItemStack());
         }
 
         @Override
-        public void write(PacketByteBuf buffer, GrindingRecipe shapelessRecipe) {
+        public void write(PacketByteBuf buffer, MillingRecipe shapelessRecipe) {
             buffer.writeVarInt(shapelessRecipe.input.size());
             for (Ingredient i : shapelessRecipe.input) {
                 i.write(buffer);

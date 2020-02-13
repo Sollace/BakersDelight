@@ -6,7 +6,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public interface BakersRecipes {
-    RecipeType<GrindingRecipe> GRINDING = register(new Identifier("bakersd", "grinding"));
+    RecipeType<MillingRecipe> MILLING = register(new Identifier("bakersd", "milling"));
 
     static <T extends Recipe<?>> RecipeType<T> register(Identifier id) {
         return Registry.register(Registry.RECIPE_TYPE, id, new RecipeType<T>() {

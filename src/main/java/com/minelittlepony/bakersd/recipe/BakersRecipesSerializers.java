@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public interface BakersRecipesSerializers {
-    RecipeSerializer<GrindingRecipe> GRINDING = register(new Identifier("bakersd", "grinding"), new GrindingRecipe.Serializer());
+    RecipeSerializer<MillingRecipe> MILLING = register(new Identifier("bakersd", "milling"), new MillingRecipe.Serializer());
     RecipeSerializer<BakingRecipe> BAKING = register(new Identifier("bakersd", "baking"), new BakingRecipe.Serializer());
     RecipeSerializer<ShapelessRecipe> SHAPELESS = register(new Identifier("bakersd", "kneading_shapeless"), new ShapelessKneadingRecipe.Serializer());
     RecipeSerializer<ShapedRecipe> SHAPED = register(new Identifier("bakersd", "kneading_shaped"), new ShapedKneadingRecipe.Serializer());

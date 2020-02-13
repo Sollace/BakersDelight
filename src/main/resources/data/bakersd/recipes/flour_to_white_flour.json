@@ -1,5 +1,5 @@
 {
-  "type": "bakersd:grinding",
+  "type": "bakersd:milling",
   "ingredients": [
     { "tag": "bakersd:flours" }
   ],

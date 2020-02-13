@@ -35,7 +35,7 @@ abstract class MixinGrindstoneContainer extends Container {
         context.run((world, pos) -> {
             world.getServer()
                     .getRecipeManager()
-                    .getFirstMatch(BakersRecipes.GRINDING, craftingInventory, world)
+                    .getFirstMatch(BakersRecipes.MILLING, craftingInventory, world)
                     .ifPresent(recipe -> {
                         resultInventory.setInvStack(0, recipe.craft(craftingInventory));
                         sendContentUpdates();
