@@ -1,6 +1,6 @@
 {
   "type": "crafting_shapeless",
-  "group": "flour",
+  "group": "topping",
   "ingredients": [
   	{ "item": "bakersd:white_flour" },
     { "item": "bakersd:bun" }

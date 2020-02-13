@@ -1,14 +1,12 @@
 {
-  "type": "crafting_shaped",
-  "group": "dough",
+  "type": "bakersd:kneading_shaped",
+  "group": "baking",
   "pattern": [
     "ooo"
   ],
   "key": {
     "o": { "item": "bakersd:corn_bread_dough" }
   },
-  "result": {
-    "item": "bakersd:tortilla",
-    "count": 3
-  }
+  "result": { "item": "bakersd:corn_bread_dough", "count": 3 },
+  "baked": { "item": "bakersd:tortilla" }
 }

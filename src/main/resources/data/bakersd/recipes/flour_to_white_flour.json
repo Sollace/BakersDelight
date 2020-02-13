@@ -3,7 +3,5 @@
   "ingredients": [
     { "tag": "bakersd:flours" }
   ],
-  "result": {
-    "item": "bakersd:white_flour"
-  }
+  "result": { "item": "bakersd:white_flour" }
 }

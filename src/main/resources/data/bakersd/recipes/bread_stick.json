@@ -1,6 +1,6 @@
 {
-  "type": "crafting_shaped",
-  "group": "dough",
+  "type": "bakersd:kneading_shaped",
+  "group": "baking",
   "pattern": [
     "o",
     "+",
@@ -10,8 +10,6 @@
     "o": { "item": "bakersd:wheat_dough" },
     "+": { "item": "minecraft:stick" }
   },
-  "result": {
-    "item": "bakersd:bread_stick",
-    "count": 6
-  }
+  "result": { "item": "bakersd:wheat_dough", "count": 6 },
+  "baked": { "item": "bakersd:bread_stick" }
 }

@@ -1,6 +1,6 @@
 {
-  "type": "crafting_shaped",
-  "group": "dough",
+  "type": "bakersd:kneading_shaped",
+  "group": "baking",
   "pattern": [
     "ooo",
     "ooo"
@@ -8,8 +8,6 @@
   "key": {
     "o": { "item": "bakersd:corn_bread_dough" }
   },
-  "result": {
-    "item": "bakersd:polenta_loaf",
-    "count": 1
-  }
+  "result": { "item": "bakersd:corn_bread_dough" },
+  "baked": { "item": "bakersd:polenta_loaf" }
 }

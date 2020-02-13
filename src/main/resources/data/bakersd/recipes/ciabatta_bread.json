@@ -1,6 +1,6 @@
 {
-  "type": "crafting_shaped",
-  "group": "dough",
+  "type": "bakersd:kneading_shaped",
+  "group": "baking",
   "pattern": [
     "+o+",
     "oao"
@@ -10,8 +10,6 @@
     "+": { "item": "minecraft:wheat_seeds" },
     "a": { "item": "bakersd:white_dough" }
   },
-  "result": {
-    "item": "bakersd:ciabatta_bread",
-    "count": 1
-  }
+  "result": { "item": "bakersd:white_dough" },
+  "baked": { "item": "bakersd:ciabatta_bread" }
 }

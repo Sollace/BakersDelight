@@ -1,5 +1,6 @@
 {
   "type": "smelting",
+  "group": "baking",
   "ingredient": {
     "item": "bakersd:white_soda_bread_dough"
   },

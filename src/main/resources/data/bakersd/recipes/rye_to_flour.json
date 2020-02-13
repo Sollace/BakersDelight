@@ -3,7 +3,5 @@
   "ingredients": [
     { "item": "bakersd:rye" }
   ],
-  "result": {
-    "item": "bakersd:rye_flour"
-  }
+  "result": { "item": "bakersd:rye_flour" }
 }

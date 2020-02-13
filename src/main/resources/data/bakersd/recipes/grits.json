@@ -1,6 +1,6 @@
 {
   "type": "crafting_shapeless",
-  "group": "dough",
+  "group": "food",
   "ingredients": [
     { "item": "bakersd:wheat_dough" },
     { "item": "bakersd:wheat_dough" },

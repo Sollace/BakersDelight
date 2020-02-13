@@ -3,7 +3,5 @@
   "ingredients": [
     { "item": "minecraft:wheat" }
   ],
-  "result": {
-    "item": "bakersd:wholegrain_flour"
-  }
+  "result": { "item": "bakersd:wholegrain_flour" }
 }

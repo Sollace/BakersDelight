@@ -8,7 +8,5 @@
   	{ "item": "bakersd:white_flour" },
     { "item": "bakersd:wheat_flour" }
   ],
-  "result": {
-    "item": "bakersd:brown_flour"
-  }
+  "result": { "item": "bakersd:brown_flour" }
 }

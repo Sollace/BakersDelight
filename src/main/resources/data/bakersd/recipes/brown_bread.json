@@ -1,6 +1,6 @@
 {
-  "type": "crafting_shaped",
-  "group": "dough",
+  "type": "bakersd:kneading_shaped",
+  "group": "baking",
   "pattern": [
     "ooo",
     "ooo"
@@ -8,8 +8,6 @@
   "key": {
     "o": { "item": "bakersd:brown_dough" }
   },
-  "result": {
-    "item": "bakersd:brown_bread",
-    "count": 1
-  }
+  "result": { "item": "bakersd:brown_dough" },
+  "baked": { "item": "bakersd:brown_bread" }
 }

@@ -1,5 +1,5 @@
 {
-  "type": "crafting_shaped",
+  "type": "bakersd:kneading_shaped",
   "group": "dough",
   "pattern": [
     " oo",
@@ -9,8 +9,6 @@
   "key": {
     "o": { "item": "bakersd:wheat_dough" }
   },
-  "result": {
-    "item": "bakersd:croissant",
-    "count": 2
-  }
+  "result": { "item": "bakersd:wheat_dough", "count": 2 },
+  "baked": { "item": "bakersd:croissant" }
 }

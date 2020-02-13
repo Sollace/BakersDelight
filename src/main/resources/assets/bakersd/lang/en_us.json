@@ -43,5 +43,6 @@
   "item.bakersd.bagel": "Bagel",
   "item.bakersd.pretzel": "Pretzel",
   "item.bakersd.ginger_bread_man": "Gingerbread Man",
-  "item.bakersd.ginger_bread_woman": "Gingerbread Wo-Man"
+  "item.bakersd.ginger_bread_woman": "Gingerbread Wo-Man",
+  "tooltip.bakersd.once_baked": "Once baked: %s"
 }

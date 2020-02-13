@@ -12,8 +12,5 @@
     "f": { "item": "bakersd:rye_flour" },
     "w": { "item": "minecraft:water_bucket" }
   },
-  "result": {
-    "item": "bakersd:rye_dough",
-    "count": 3
-  }
+  "result": { "item": "bakersd:rye_dough", "count": 3 }
 }

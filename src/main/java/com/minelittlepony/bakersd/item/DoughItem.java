@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
@@ -25,9 +26,11 @@ public class DoughItem extends Item {
     @Override
     @Environment(EnvType.CLIENT)
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        getBakedItem(stack).ifPresent(item -> {
-            tooltip.add(new TranslatableText("tooltip.bakersd.once_baked", item.getName()));
-        });
+        if (stack.hasTag() && !stack.getTag().getBoolean("silent")) {
+            getBakedItem(stack).ifPresent(item -> {
+                tooltip.add(new TranslatableText("tooltip.bakersd.once_baked", item.getName()).formatted(Formatting.ITALIC, Formatting.GRAY));
+            });
+        }
     }
 
     public static Optional<Item> getBakedItem(ItemStack stack) {

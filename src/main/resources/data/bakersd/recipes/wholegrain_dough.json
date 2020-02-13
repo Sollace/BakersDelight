@@ -12,8 +12,5 @@
     "f": { "item": "bakersd:wholegrain_flour" },
     "w": { "item": "minecraft:water_bucket" }
   },
-  "result": {
-    "item": "bakersd:wholegrain_dough",
-    "count": 3
-  }
+  "result": { "item": "bakersd:wholegrain_dough", "count": 3 }
 }
