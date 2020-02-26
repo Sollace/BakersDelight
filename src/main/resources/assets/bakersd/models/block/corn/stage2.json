@@ -1,6 +1,6 @@
 {
     "parent": "block/crop",
     "textures": {
-        "crop": "bakersd:block/rye/stage2"
+        "crop": "bakersd:block/corn/stage2"
     }
 }

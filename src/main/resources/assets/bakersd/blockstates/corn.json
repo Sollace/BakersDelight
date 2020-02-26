@@ -1,12 +1,16 @@
 {
     "variants": {
-        "age=0": { "model": "bakersd:block/corn/stage0" },
-        "age=1": { "model": "bakersd:block/corn/stage1" },
-        "age=2": { "model": "bakersd:block/corn/stage2" },
-        "age=3": { "model": "bakersd:block/corn/stage3" },
-        "age=4": { "model": "bakersd:block/corn/stage4" },
-        "age=5": { "model": "bakersd:block/corn/stage5" },
-        "age=6": { "model": "bakersd:block/corn/stage6" },
-        "age=7": { "model": "bakersd:block/corn/stage7" }
+        "age=0,half=top": { "model": "bakersd:block/corn/stage0" },
+        "age=1,half=top": { "model": "bakersd:block/corn/stage1" },
+        "age=2,half=top": { "model": "bakersd:block/corn/stage2" },
+        "age=3,half=top": { "model": "bakersd:block/corn/stage3" },
+        "age=4,half=top": { "model": "bakersd:block/corn/stage4" },
+        "half=middle": { "model": "bakersd:block/corn/stem" },
+        "half=bottom": { "model": "bakersd:block/corn/stem" },
+        "age=0,half=crown": { "model": "bakersd:block/corn/stage0" },
+        "age=1,half=crown": { "model": "bakersd:block/corn/stage1" },
+        "age=2,half=crown": { "model": "bakersd:block/corn/stage2" },
+        "age=3,half=crown": { "model": "bakersd:block/corn/stage3" },
+        "age=4,half=crown": { "model": "bakersd:block/corn/crown" }
     }
 }

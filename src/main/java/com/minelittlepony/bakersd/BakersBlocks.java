@@ -8,14 +8,19 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import com.minelittlepony.bakersd.block.BoxBlock;
+import com.minelittlepony.bakersd.block.BreadBoardBlock;
 import com.minelittlepony.bakersd.block.RyeBlock;
 import com.minelittlepony.bakersd.block.TallCropBlock;
 
 public interface BakersBlocks {
-
     Block YEAST = register(new BoxBlock(BoxBlock.SMALL, FabricBlockSettings.of(Material.WOOD).sounds(BoxBlock.SOUND).build()), "yeast");
     Block BAKING_SODA = register(new BoxBlock(BoxBlock.SMALL, FabricBlockSettings.of(Material.WOOD).sounds(BoxBlock.SOUND).build()), "baking_soda");
-
+    Block OAK_BREAD_BOARD = register(new BreadBoardBlock(FabricBlockSettings.of(Material.WOOD)
+            .sounds(BlockSoundGroup.WOOD)
+            .hardness(2)
+            .resistance(5)
+            .slipperiness(1)
+            .build()), "oak_bread_board");
 
     Block RYE = register(new RyeBlock(FabricBlockSettings.of(Material.PLANT)
                         .noCollision()
@@ -40,6 +45,4 @@ public interface BakersBlocks {
     static <T extends Block> T register(T block, String name) {
         return (T)Registry.register(Registry.BLOCK, new Identifier("bakersd", name), block);
     }
-
-    static void bootstrap() { }
 }

@@ -34,13 +34,12 @@ public class TallCropBlock extends CropBlock {
     private static final VoxelShape[] SHAPES;
     static {
         double[] sizes = new double[] {3.2, 6.4, 9.6, 12.8, 16};
-        int maxHeight = 5;
 
-        SHAPES = new VoxelShape[maxHeight * sizes.length];
+        SHAPES = new VoxelShape[sizes.length * sizes.length];
 
-        for (int i = 0; i < maxHeight; i++) {
+        for (int i = 0; i < sizes.length; i++) {
             for (int j = 0; j < sizes.length; j++) {
-                SHAPES[j + (i * maxHeight)] = Block.createCuboidShape(0, 0, 0, 16, sizes[j] + (i * 16), 16);
+                SHAPES[j + (i * sizes.length)] = Block.createCuboidShape(0, 0, 0, 16, sizes[j] + (i * 16), 16);
             }
         }
     }
@@ -61,7 +60,7 @@ public class TallCropBlock extends CropBlock {
 
     @Override
     public OffsetType getOffsetType() {
-        return OffsetType.NONE;
+        return OffsetType.XZ;
     }
 
     @Override
@@ -76,7 +75,8 @@ public class TallCropBlock extends CropBlock {
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
-        if (rand.nextInt(10) != 0 && world.getLightLevel(pos.up()) >= 9) {
+
+        if (rand.nextInt(10) != 0 && world.getLightLevel(pos.up()) >= 2) {
             if (isFertilizable(world, pos, state, world.isClient)) {
                 applyGrowth(world, pos, state);
             }
@@ -117,12 +117,9 @@ public class TallCropBlock extends CropBlock {
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext ePos) {
         BlockPos root = getRoot(view, pos);
         BlockPos diff = root.subtract(pos);
-        Vec3d offset = getOffsetPos(state, view, pos);
-        int fullAge = getFullAge(view, root);
+        Vec3d offset = state.getOffsetPos(view, pos).add(diff.getX(), diff.getY(), diff.getZ());
 
-        return SHAPES[Math.min(SHAPES.length - 1, fullAge)]
-                .offset(offset.x, offset.y, offset.z)
-                .offset(diff.getX(), diff.getY(), diff.getZ());
+        return SHAPES[Math.min(SHAPES.length - 1, getFullAge(view, root))].offset(offset.x, offset.y, offset.z);
     }
 
     @Override

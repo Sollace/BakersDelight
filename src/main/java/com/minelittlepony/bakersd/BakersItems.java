@@ -23,6 +23,8 @@ public interface BakersItems {
 
     Item ROLLING_PIN = register(new RollingPinItem(ToolMaterials.WOOD, 0, 78, new Item.Settings().group(ItemGroup.TOOLS)), "rolling_pin");
 
+    Item OAK_BREAD_BOARD = register(new BlockItem(BakersBlocks.OAK_BREAD_BOARD, new Item.Settings().group(ItemGroup.TOOLS)), "oak_bread_board");
+
     Item CORN_FLOUR = register(new Item(new Item.Settings().group(ItemGroup.MISC)), "corn_flour");//
     Item WHOLEGRAIN_FLOUR = register(new Item(new Item.Settings().group(ItemGroup.MISC)), "wholegrain_flour");//
     Item RYE_FLOUR = register(new Item(new Item.Settings().group(ItemGroup.MISC)), "rye_flour");//
@@ -88,5 +90,7 @@ public interface BakersItems {
         return (T)Registry.register(Registry.ITEM, new Identifier("bakersd", name), item);
     }
 
-    static void bootstrap() { }
+    static void bootstrap() {
+        BakersBlockEntities.bootstrap();
+    }
 }

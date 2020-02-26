@@ -44,5 +44,6 @@
   "item.bakersd.ginger_bread_woman": "Gingerbread Wo-Man",
   "block.bakersd.yeast": "Yeast",
   "block.bakersd.baking_soda": "Baking Soda",
+  "block.bakersd.oak_bread_board": "Oak Bread Board",
   "tooltip.bakersd.once_baked": "Once baked: %s"
 }

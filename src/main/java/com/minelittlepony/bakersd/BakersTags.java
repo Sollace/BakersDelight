@@ -11,6 +11,7 @@ public interface BakersTags {
     Tag<Item> FLOURS = TagRegistry.item(new Identifier("bakersd", "flours"));
     Tag<Item> DOUGHS = TagRegistry.item(new Identifier("bakersd", "doughs"));
     Tag<Item> BREADS = TagRegistry.item(new Identifier("bakersd", "breads"));
+    Tag<Item> SLICEABLE = TagRegistry.item(new Identifier("bakersd", "sliceable"));
 
     static void bootstrap() {
         FuelRegistry.INSTANCE.add(BakersTags.BREADS, 100);
