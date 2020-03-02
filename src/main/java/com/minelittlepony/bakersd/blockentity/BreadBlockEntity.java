@@ -1,6 +1,8 @@
 package com.minelittlepony.bakersd.blockentity;
 
+import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.network.packet.BlockEntityUpdateS2CPacket;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
@@ -11,7 +13,9 @@ import net.minecraft.util.Hand;
 import com.minelittlepony.bakersd.BakersBlockEntities;
 import com.minelittlepony.bakersd.BakersTags;
 
-public class BreadBlockEntity extends BlockEntity {
+import javax.annotation.Nullable;
+
+public class BreadBlockEntity extends BlockEntity implements BlockEntityClientSerializable {
 
     public static int MAX_SLICES = 8;
 
@@ -37,17 +41,22 @@ public class BreadBlockEntity extends BlockEntity {
         return tag;
     }
 
-    @Override
-    public boolean onBlockAction(int type, int value) {
-        return false;
-    }
-
     public int getSlices() {
         return slices;
     }
 
     public ItemStack getStack() {
         return item;
+    }
+
+    @Override public void fromClientTag(CompoundTag tag) {fromTag(tag);}
+    @Override public CompoundTag toClientTag(CompoundTag tag) {return toTag(tag);}
+    @Override public CompoundTag toInitialChunkDataTag() { return toTag(new CompoundTag()); }
+
+    @Override
+    @Nullable
+    public BlockEntityUpdateS2CPacket toUpdatePacket() {
+        return new BlockEntityUpdateS2CPacket(pos, 127, toInitialChunkDataTag());
     }
 
     public ActionResult activate(PlayerEntity player, Hand hand) {
@@ -57,6 +66,7 @@ public class BreadBlockEntity extends BlockEntity {
             if (stack.isEmpty()) {
                 player.giveItemStack(item);
 
+                markDirty();
                 return ActionResult.SUCCESS;
             }
 
@@ -69,6 +79,7 @@ public class BreadBlockEntity extends BlockEntity {
                     item = ItemStack.EMPTY;
                 }
 
+                markDirty();
                 return ActionResult.SUCCESS;
             }
         }
@@ -77,6 +88,7 @@ public class BreadBlockEntity extends BlockEntity {
             item = stack.split(1);
             slices = MAX_SLICES;
 
+            markDirty();
             return ActionResult.SUCCESS;
         }
 
