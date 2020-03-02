@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 
@@ -86,6 +87,8 @@ public class BreadBlockEntity extends BlockEntity implements BlockEntityClientSe
 
         if (item.isEmpty() && stack.getItem().isIn(BakersTags.SLICEABLE)) {
             item = stack.split(1);
+            player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1, 1);
+
             slices = MAX_SLICES;
 
             markDirty();
