@@ -12,6 +12,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.Registry;
 
 import com.minelittlepony.bakersd.BreadModelLoader;
@@ -32,7 +33,11 @@ public class BreadBlockEntityRenderer extends BlockEntityRenderer<BreadBlockEnti
             return;
         }
 
-        float angle = entity.getCachedState().get(Properties.HORIZONTAL_FACING).rotateYClockwise().asRotation();
+        Direction direction = entity.getCachedState().get(Properties.HORIZONTAL_FACING).rotateYClockwise();
+        if (direction.getAxis() == Direction.Axis.X) {
+            direction = direction.getOpposite();
+        }
+        float angle = direction.asRotation();
 
         matrices.push();
 
