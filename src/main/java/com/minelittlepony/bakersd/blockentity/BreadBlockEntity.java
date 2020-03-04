@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.network.packet.BlockEntityUpdateS2CPacket;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.nbt.CompoundTag;
@@ -16,7 +17,7 @@ import com.minelittlepony.bakersd.BakersTags;
 
 import javax.annotation.Nullable;
 
-public class BreadBlockEntity extends BlockEntity implements BlockEntityClientSerializable {
+public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEntityClientSerializable {
 
     public static int MAX_SLICES = 8;
 
@@ -96,5 +97,49 @@ public class BreadBlockEntity extends BlockEntity implements BlockEntityClientSe
         }
 
         return ActionResult.PASS;
+    }
+
+    @Override
+    public void clear() {
+        setInvStack(0, ItemStack.EMPTY);
+    }
+
+    @Override
+    public int getInvSize() {
+        return 1;
+    }
+
+    @Override
+    public boolean isInvEmpty() {
+        return slices != MAX_SLICES || item.isEmpty();
+    }
+
+    @Override
+    public ItemStack getInvStack(int slot) {
+        return slices != MAX_SLICES ? ItemStack.EMPTY : item;
+    }
+
+    @Override
+    public ItemStack takeInvStack(int slot, int amount) {
+        return slices != MAX_SLICES ? ItemStack.EMPTY : item.split(amount);
+    }
+
+    @Override
+    public ItemStack removeInvStack(int slot) {
+        ItemStack stack = item;
+        clear();
+        return stack;
+    }
+
+    @Override
+    public void setInvStack(int slot, ItemStack stack) {
+        slices = MAX_SLICES;
+        item = stack;
+        markDirty();
+    }
+
+    @Override
+    public boolean canPlayerUseInv(PlayerEntity player) {
+        return true;
     }
 }

@@ -4,13 +4,17 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -47,6 +51,38 @@ public class BreadBoardBlock extends OrientedBlock implements BlockEntityProvide
     }
 
     @Override
+    public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+        BlockEntity entity = world.getBlockEntity(pos);
+
+        if (entity instanceof Inventory && !((Inventory)entity).isInvEmpty()) {
+            return ((Inventory)entity).getInvStack(0);
+        }
+        return super.getPickStack(world, pos, state);
+    }
+
+    @Override
+    @Deprecated
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        if (world.isClient) {
+            return;
+        }
+
+        if (entity.fallDistance <= 0) {
+            return;
+        }
+
+        BlockEntity be = world.getBlockEntity(pos);
+
+        if (be instanceof BreadBlockEntity && !((BreadBlockEntity)be).getStack().isEmpty()) {
+            int rng = (int)Math.ceil(200 / entity.fallDistance);
+            if (rng <= 0 || world.random.nextInt(rng) == 0) {
+                world.breakBlock(pos, true);
+                world.setBlockState(pos, state);
+            }
+        }
+    }
+
+    @Override
     @Deprecated
     public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext ePos) {
         return SHAPES.getOrDefault(state.get(Properties.HORIZONTAL_FACING), VoxelShapes.fullCube());
@@ -56,14 +92,18 @@ public class BreadBoardBlock extends OrientedBlock implements BlockEntityProvide
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BreadBlockEntity entity = (BreadBlockEntity)world.getBlockEntity(pos);
 
-        return entity.activate(player, hand);
+        ActionResult result = entity.activate(player, hand);
+
+        world.updateNeighborsAlways(pos, this);
+
+        return result;
     }
 
     @Override
     public boolean onBlockAction(BlockState state, World world, BlockPos pos, int type, int data) {
-        BlockEntity blockEntity = world.getBlockEntity(pos);
-        return blockEntity == null ? false : blockEntity.onBlockAction(type, data);
-     }
+        BlockEntity e = world.getBlockEntity(pos);
+        return e == null ? false : e.onBlockAction(type, data);
+    }
 
     @Override
     protected Direction getPlacementDirection(ItemPlacementContext ctx) {
@@ -78,6 +118,34 @@ public class BreadBoardBlock extends OrientedBlock implements BlockEntityProvide
         switch (arm) {
             case RIGHT: return dir.rotateYCounterclockwise();
             default: return dir.rotateYClockwise();
+        }
+    }
+
+    @Override
+    public boolean emitsRedstonePower(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getStrongRedstonePower(BlockState state, BlockView view, BlockPos pos, Direction facing) {
+        return state.getWeakRedstonePower(view, pos, facing);
+    }
+
+    @Override
+    @Deprecated
+    public int getWeakRedstonePower(BlockState state, BlockView view, BlockPos pos, Direction facing) {
+        return ((BreadBlockEntity)view.getBlockEntity(pos)).getSlices();
+    }
+
+    @Override
+    public void onBlockRemoved(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+        if (state.getBlock() != newState.getBlock()) {
+            BlockEntity e = world.getBlockEntity(pos);
+            if (e instanceof Inventory) {
+                ItemScatterer.spawn(world, pos, (Inventory)e);
+            }
+
+            super.onBlockRemoved(state, world, pos, newState, moved);
         }
     }
 
