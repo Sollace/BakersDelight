@@ -1,5 +1,5 @@
 {
-	"parent": "bakersd:bread/white_bread",
+	"parent": "bakersd:bread/white_bread_slices_1",
 	"textures": {
 		"layer0": "bakersd:item/wholegrain_bread_outside"
 	}
