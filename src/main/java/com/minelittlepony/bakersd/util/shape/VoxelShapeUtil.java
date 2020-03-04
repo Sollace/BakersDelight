@@ -6,10 +6,10 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 
-public class VoxelShapeUtil {
-    static final Vec3d CENTER = new Vec3d(0.5, 0, 0.5);
+public interface VoxelShapeUtil {
+    Vec3d CENTER = new Vec3d(0.5, 0, 0.5);
 
-    public static VoxelShape rotate(VoxelShape shape, Direction direction) {
+    static VoxelShape rotate(VoxelShape shape, Direction direction) {
         if (direction.asRotation() == 0) {
             return shape;
         }
@@ -35,7 +35,7 @@ public class VoxelShapeUtil {
             .toArray(VoxelShape[]::new));
     }
 
-    private static Vec3d rotate(double x, double z, float angle) {
+    static Vec3d rotate(double x, double z, float angle) {
         return new Vec3d(x, 0, z).subtract(CENTER).rotateY(angle).add(CENTER);
     }
 }
