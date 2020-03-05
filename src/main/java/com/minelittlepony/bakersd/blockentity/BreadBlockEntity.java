@@ -65,6 +65,13 @@ public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEnt
     public ActionResult activate(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
 
+        if (item.isEmpty() && stack.getItem().isIn(BakersTags.SLICEABLE)) {
+            setInvStack(0, stack.split(1));
+            player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1, 1);
+
+            return ActionResult.SUCCESS;
+        }
+
         if (!item.isEmpty()) {
             if (stack.isEmpty()) {
                 player.giveItemStack(putSlices(item, slices));
@@ -85,13 +92,6 @@ public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEnt
                 markDirty();
                 return ActionResult.SUCCESS;
             }
-        }
-
-        if (item.isEmpty() && stack.getItem().isIn(BakersTags.SLICEABLE)) {
-            setInvStack(0, stack.split(1));
-            player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1, 1);
-
-            return ActionResult.SUCCESS;
         }
 
         return ActionResult.PASS;
