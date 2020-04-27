@@ -1,0 +1,6 @@
+{
+	"parent": "bakersd:bread/white_bread_slices_3",
+	"textures": {
+		"layer0": "bakersd:item/brown_bread_outside"
+	}
+}
