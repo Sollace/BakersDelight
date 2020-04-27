@@ -6,8 +6,14 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 
+import java.util.function.Function;
+
 public interface VoxelShapeUtil {
     Vec3d CENTER = new Vec3d(0.5, 0, 0.5);
+
+    static Function<Direction, VoxelShape> rotator(VoxelShape base) {
+        return d -> rotate(base, d);
+    }
 
     static VoxelShape rotate(VoxelShape shape, Direction direction) {
         if (direction.asRotation() == 0) {

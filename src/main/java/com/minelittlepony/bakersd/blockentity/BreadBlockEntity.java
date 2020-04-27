@@ -11,16 +11,14 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.math.MathHelper;
 
 import com.minelittlepony.bakersd.BakersBlockEntities;
 import com.minelittlepony.bakersd.BakersTags;
+import com.minelittlepony.bakersd.item.BreadItem;
 
 import javax.annotation.Nullable;
 
 public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEntityClientSerializable {
-
-    public static int MAX_SLICES = 8;
 
     private int slices;
     private ItemStack item = ItemStack.EMPTY;
@@ -74,7 +72,7 @@ public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEnt
 
         if (!item.isEmpty()) {
             if (stack.isEmpty()) {
-                player.giveItemStack(putSlices(item, slices));
+                player.giveItemStack(BreadItem.putSlices(item, slices));
 
                 markDirty();
                 return ActionResult.SUCCESS;
@@ -109,29 +107,29 @@ public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEnt
 
     @Override
     public boolean isInvEmpty() {
-        return slices != MAX_SLICES || item.isEmpty();
+        return slices != BreadItem.MAX_SLICES || item.isEmpty();
     }
 
     @Override
     public ItemStack getInvStack(int slot) {
-        return slices != MAX_SLICES ? ItemStack.EMPTY : putSlices(item.copy(), slices);
+        return slices != BreadItem.MAX_SLICES ? ItemStack.EMPTY : BreadItem.putSlices(item.copy(), slices);
     }
 
     @Override
     public ItemStack takeInvStack(int slot, int amount) {
-        return slices != MAX_SLICES ? ItemStack.EMPTY : putSlices(item.split(amount), slices);
+        return slices != BreadItem.MAX_SLICES ? ItemStack.EMPTY : BreadItem.putSlices(item.split(amount), slices);
     }
 
     @Override
     public ItemStack removeInvStack(int slot) {
-        ItemStack stack = putSlices(item, slices);
+        ItemStack stack = BreadItem.putSlices(item, slices);
         clear();
         return stack;
     }
 
     @Override
     public void setInvStack(int slot, ItemStack stack) {
-        slices = getSlices(stack);
+        slices = BreadItem.getSlices(stack);
         item = stack;
         markDirty();
     }
@@ -139,28 +137,5 @@ public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEnt
     @Override
     public boolean canPlayerUseInv(PlayerEntity player) {
         return true;
-    }
-
-    public static ItemStack putSlices(ItemStack stack, int slices) {
-        if (slices == 0 || slices == MAX_SLICES) {
-            if (stack.hasTag()) {
-                stack.getTag().remove("slices");
-                if (stack.getTag().isEmpty()) {
-                    stack.setTag(null);
-                }
-            }
-        } else {
-            stack.getOrCreateTag().putInt("slices", slices);
-        }
-
-        return stack;
-    }
-
-    public static int getSlices(ItemStack stack) {
-        if (stack.isEmpty() || !stack.hasTag()) {
-            return MAX_SLICES;
-        }
-        int result = MathHelper.clamp(stack.getTag().getInt("slices"), 0, MAX_SLICES);
-        return result == 0 ? MAX_SLICES : result;
     }
 }

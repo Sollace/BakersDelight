@@ -37,12 +37,11 @@ public class BreadBoardBlock extends OrientedBlock implements BlockEntityProvide
     private static final Map<Direction, VoxelShape> SHAPES;
 
     static {
-        VoxelShape base = Block.createCuboidShape(4, 0, 0, 12, 1, 16);
         SHAPES = Arrays.stream(Direction.values())
             .filter(d -> d.getAxis() != Axis.Y)
             .collect(Collectors.toMap(
                     Function.identity(),
-                    d -> VoxelShapeUtil.rotate(base, d))
+                    VoxelShapeUtil.rotator(Block.createCuboidShape(4, 0, 0, 12, 1, 16)))
             );
     }
 
