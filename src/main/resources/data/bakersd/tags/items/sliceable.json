@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-  	"minecraft:bread",
   	"bakersd:wheat_bread",
   	"bakersd:white_bread",
   	"bakersd:brown_bread",
