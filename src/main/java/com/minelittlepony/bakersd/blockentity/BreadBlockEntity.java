@@ -64,6 +64,9 @@ public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEnt
 
     public ActionResult activate(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
+        if (player.isCreative()) {
+            stack = stack.copy();
+        }
 
         if (item.isEmpty() && stack.getItem().isIn(BakersTags.SLICEABLE)) {
             setStack(0, stack.split(1));
