@@ -2,7 +2,7 @@ package com.minelittlepony.bakersd.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityContext;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
@@ -24,7 +24,7 @@ public class OrientedBlock extends WaterloggedBlock {
     @Deprecated
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         pos = pos.down();
-        return Block.isFaceFullSquare(world.getBlockState(pos).getCollisionShape(world, pos, EntityContext.absent()), Direction.UP);
+        return Block.isFaceFullSquare(world.getBlockState(pos).getCollisionShape(world, pos, ShapeContext.absent()), Direction.UP);
     }
 
     protected Direction getPlacementDirection(ItemPlacementContext ctx) {

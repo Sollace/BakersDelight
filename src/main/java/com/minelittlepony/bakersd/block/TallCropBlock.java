@@ -8,7 +8,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
-import net.minecraft.entity.EntityContext;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.server.world.ServerWorld;
@@ -23,8 +23,8 @@ import net.minecraft.util.math.Direction.Axis;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 
 public class TallCropBlock extends CropBlock {
 
@@ -89,7 +89,7 @@ public class TallCropBlock extends CropBlock {
     }
 
     @Override
-    public void onBroken(IWorld world, BlockPos pos, BlockState state) {
+    public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
 
         pos = pos.down();
         state = world.getBlockState(pos);
@@ -114,10 +114,10 @@ public class TallCropBlock extends CropBlock {
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext ePos) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ePos) {
         BlockPos root = getRoot(view, pos);
         BlockPos diff = root.subtract(pos);
-        Vec3d offset = state.getOffsetPos(view, pos).add(diff.getX(), diff.getY(), diff.getZ());
+        Vec3d offset = state.getModelOffset(view, pos).add(diff.getX(), diff.getY(), diff.getZ());
 
         return SHAPES[Math.min(SHAPES.length - 1, getFullAge(view, root))].offset(offset.x, offset.y, offset.z);
     }
@@ -159,7 +159,7 @@ public class TallCropBlock extends CropBlock {
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction facing, BlockState neighborState, IWorld world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState getStateForNeighborUpdate(BlockState state, Direction facing, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         state = super.getStateForNeighborUpdate(state, facing, neighborState, world, pos, neighborPos);
 
         if (state.getBlock() == this && facing.getAxis() == Axis.Y) {

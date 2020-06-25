@@ -3,9 +3,9 @@ package com.minelittlepony.bakersd.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
@@ -53,8 +53,8 @@ public class BreadBoardBlock extends OrientedBlock implements BlockEntityProvide
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
         BlockEntity entity = world.getBlockEntity(pos);
 
-        if (entity instanceof Inventory && !((Inventory)entity).isInvEmpty()) {
-            return ((Inventory)entity).getInvStack(0);
+        if (entity instanceof Inventory && !((Inventory)entity).isEmpty()) {
+            return ((Inventory)entity).getStack(0);
         }
         return super.getPickStack(world, pos, state);
     }
@@ -83,7 +83,7 @@ public class BreadBoardBlock extends OrientedBlock implements BlockEntityProvide
 
     @Override
     @Deprecated
-    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext ePos) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, ShapeContext ePos) {
         return SHAPES.getOrDefault(state.get(Properties.HORIZONTAL_FACING), VoxelShapes.fullCube());
     }
 
@@ -99,9 +99,9 @@ public class BreadBoardBlock extends OrientedBlock implements BlockEntityProvide
     }
 
     @Override
-    public boolean onBlockAction(BlockState state, World world, BlockPos pos, int type, int data) {
+    public boolean onSyncedBlockEvent(BlockState state, World world, BlockPos pos, int type, int data) {
         BlockEntity e = world.getBlockEntity(pos);
-        return e == null ? false : e.onBlockAction(type, data);
+        return e == null ? false : e.onSyncedBlockEvent(type, data);
     }
 
     @Override
@@ -137,14 +137,14 @@ public class BreadBoardBlock extends OrientedBlock implements BlockEntityProvide
     }
 
     @Override
-    public void onBlockRemoved(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity e = world.getBlockEntity(pos);
             if (e instanceof Inventory) {
                 ItemScatterer.spawn(world, pos, (Inventory)e);
             }
 
-            super.onBlockRemoved(state, world, pos, newState, moved);
+            super.onStateReplaced(state, world, pos, newState, moved);
         }
     }
 

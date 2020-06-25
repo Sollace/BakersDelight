@@ -11,10 +11,10 @@ import net.minecraft.recipe.RecipeFinder;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.ShapedRecipe;
-import net.minecraft.util.DefaultedList;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
-import net.minecraft.util.PacketByteBuf;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.world.World;
 
 import com.google.gson.JsonArray;
@@ -51,8 +51,8 @@ public class MillingRecipe implements Recipe<Inventory> {
         RecipeFinder recipeFinder = new RecipeFinder();
         int i = 0;
 
-        for(int j = 0; j < inv.getInvSize(); ++j) {
-           ItemStack itemStack = inv.getInvStack(j);
+        for(int j = 0; j < inv.size(); ++j) {
+           ItemStack itemStack = inv.getStack(j);
            if (!itemStack.isEmpty()) {
               i++;
               recipeFinder.addItem(itemStack);
@@ -66,8 +66,8 @@ public class MillingRecipe implements Recipe<Inventory> {
     public ItemStack craft(Inventory inv) {
         RecipeFinder recipeFinder = new RecipeFinder();
 
-        for(int j = 0; j < inv.getInvSize(); ++j) {
-           recipeFinder.addItem(inv.getInvStack(j));
+        for(int j = 0; j < inv.size(); ++j) {
+           recipeFinder.addItem(inv.getStack(j));
         }
 
         ItemStack output = getOutput().copy();

@@ -29,7 +29,7 @@ public class BakingRecipe extends AbstractCookingRecipe {
 
     @Override
     public ItemStack craft(Inventory inv) {
-        ItemStack stack = inv.getInvStack(0);
+        ItemStack stack = inv.getStack(0);
         return DoughItem.getBakedItem(stack).map(ItemStack::new).orElse(super.craft(inv));
     }
 

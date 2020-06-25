@@ -1,11 +1,11 @@
 package com.minelittlepony.bakersd.mixin;
 
-import net.minecraft.container.BlockContext;
-import net.minecraft.container.Container;
-import net.minecraft.container.GrindstoneContainer;
-import net.minecraft.container.Slot;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.GrindstoneScreenHandler;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.screen.slot.Slot;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,15 +18,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.minelittlepony.bakersd.BakersTags;
 import com.minelittlepony.bakersd.recipe.BakersRecipes;
 
-@Mixin(GrindstoneContainer.class)
-abstract class MixinGrindstoneContainer extends Container {
+@Mixin(GrindstoneScreenHandler.class)
+abstract class MixinGrindstoneContainer extends ScreenHandler {
 
     @Shadow @Final
-    private Inventory resultInventory;
+    private Inventory result;
     @Shadow @Final
-    private Inventory craftingInventory;
+    private Inventory input;
     @Shadow @Final
-    private BlockContext context;
+    private ScreenHandlerContext context;
 
     private MixinGrindstoneContainer() { super(null, 0); }
 
@@ -35,9 +35,9 @@ abstract class MixinGrindstoneContainer extends Container {
         context.run((world, pos) -> {
             world.getServer()
                     .getRecipeManager()
-                    .getFirstMatch(BakersRecipes.MILLING, craftingInventory, world)
+                    .getFirstMatch(BakersRecipes.MILLING, input, world)
                     .ifPresent(recipe -> {
-                        resultInventory.setInvStack(0, recipe.craft(craftingInventory));
+                        result.setStack(0, recipe.craft(input));
                         sendContentUpdates();
                         info.cancel();
                     });
@@ -46,8 +46,8 @@ abstract class MixinGrindstoneContainer extends Container {
 }
 
 @Mixin(targets = {
-    "net.minecraft.container.GrindstoneContainer$2",
-    "net.minecraft.container.GrindstoneContainer$3"
+    "net.minecraft.screen.GrindstoneScreenHandler$2",
+    "net.minecraft.screen.GrindstoneScreenHandler$3"
 })
 abstract class MixinGrindstoneContainer_2 extends Slot {
     public MixinGrindstoneContainer_2() {super(null, 0, 0, 0);}

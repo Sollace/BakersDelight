@@ -23,18 +23,18 @@ public interface VoxelShapeUtil {
         return VoxelShapes.union(VoxelShapes.empty(), shape.getBoundingBoxes().stream()
             .map(box -> {
               //These first two are enough for orthogonal rotations
-                Vec3d a = rotate(box.x1, box.z1, angle);
-                Vec3d b = rotate(box.x2, box.z2, angle);
+                Vec3d a = rotate(box.minX, box.minZ, angle);
+                Vec3d b = rotate(box.maxX, box.maxZ, angle);
                 //These cover odd angles
-                Vec3d c = rotate(box.x1, box.z2, angle);
-                Vec3d d = rotate(box.x2, box.z1, angle);
+                Vec3d c = rotate(box.minX, box.maxZ, angle);
+                Vec3d d = rotate(box.maxX, box.minZ, angle);
 
                 return VoxelShapes.cuboid(new Box(
                         Math.min(Math.min(a.x, b.x), Math.min(c.x, d.x)),
-                        box.y1,
+                        box.minY,
                         Math.min(Math.min(a.z, b.z), Math.min(c.z, d.z)),
                         Math.max(Math.max(a.x, b.x), Math.max(c.x, d.x)),
-                        box.y2,
+                        box.maxY,
                         Math.max(Math.max(a.z, b.z), Math.max(c.z, d.z))
                 ));
             })

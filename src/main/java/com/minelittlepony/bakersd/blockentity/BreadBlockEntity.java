@@ -1,13 +1,15 @@
 package com.minelittlepony.bakersd.blockentity;
 
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.network.packet.BlockEntityUpdateS2CPacket;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -28,8 +30,8 @@ public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEnt
     }
 
     @Override
-    public void fromTag(CompoundTag tag) {
-        super.fromTag(tag);
+    public void fromTag(BlockState state, CompoundTag tag) {
+        super.fromTag(state, tag);
         slices = tag.getInt("slices");
         item = ItemStack.fromTag(tag.getCompound("item"));
     }
@@ -50,7 +52,7 @@ public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEnt
         return item;
     }
 
-    @Override public void fromClientTag(CompoundTag tag) {fromTag(tag);}
+    @Override public void fromClientTag(CompoundTag tag) {fromTag(Blocks.AIR.getDefaultState(), tag);}
     @Override public CompoundTag toClientTag(CompoundTag tag) {return toTag(tag);}
     @Override public CompoundTag toInitialChunkDataTag() { return toTag(new CompoundTag()); }
 
@@ -64,7 +66,7 @@ public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEnt
         ItemStack stack = player.getStackInHand(hand);
 
         if (item.isEmpty() && stack.getItem().isIn(BakersTags.SLICEABLE)) {
-            setInvStack(0, stack.split(1));
+            setStack(0, stack.split(1));
             player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1, 1);
 
             return ActionResult.SUCCESS;
@@ -97,45 +99,45 @@ public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEnt
 
     @Override
     public void clear() {
-        setInvStack(0, ItemStack.EMPTY);
+        setStack(0, ItemStack.EMPTY);
     }
 
     @Override
-    public int getInvSize() {
+    public int size() {
         return 1;
     }
 
     @Override
-    public boolean isInvEmpty() {
+    public boolean isEmpty() {
         return slices != BreadItem.MAX_SLICES || item.isEmpty();
     }
 
     @Override
-    public ItemStack getInvStack(int slot) {
+    public ItemStack getStack(int slot) {
         return slices != BreadItem.MAX_SLICES ? ItemStack.EMPTY : BreadItem.putSlices(item.copy(), slices);
     }
 
     @Override
-    public ItemStack takeInvStack(int slot, int amount) {
+    public ItemStack removeStack(int slot, int amount) {
         return slices != BreadItem.MAX_SLICES ? ItemStack.EMPTY : BreadItem.putSlices(item.split(amount), slices);
     }
 
     @Override
-    public ItemStack removeInvStack(int slot) {
+    public ItemStack removeStack(int slot) {
         ItemStack stack = BreadItem.putSlices(item, slices);
         clear();
         return stack;
     }
 
     @Override
-    public void setInvStack(int slot, ItemStack stack) {
+    public void setStack(int slot, ItemStack stack) {
         slices = BreadItem.getSlices(stack);
         item = stack;
         markDirty();
     }
 
     @Override
-    public boolean canPlayerUseInv(PlayerEntity player) {
+    public boolean canPlayerUse(PlayerEntity player) {
         return true;
     }
 }

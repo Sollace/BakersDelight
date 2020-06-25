@@ -28,7 +28,7 @@ public class Main implements ModInitializer {
             }
 
             Identifier modId = new Identifier("bakersdmc", id.getPath());
-            LootTable table = manager.getSupplier(modId);
+            LootTable table = manager.getTable(modId);
             if (table != LootTable.EMPTY) {
                 supplier.withPools(((FabricLootSupplier)table).getPools());
             }
