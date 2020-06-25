@@ -1,9 +1,12 @@
 package com.minelittlepony.bakersd;
 
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Identifier;
@@ -16,6 +19,17 @@ import com.minelittlepony.bakersd.item.FabricToolMaterials;
 import com.minelittlepony.bakersd.item.RollingPinItem;
 
 public interface BakersItems {
+
+    ItemGroup GROUP = FabricItemGroupBuilder.create(new Identifier("bakersd", "breads"))
+            .icon(() -> new ItemStack(Items.BREAD))
+            .appendItems(list -> {
+                Registry.ITEM.getEntries().forEach(e -> {
+                    if ("bakersd".equals(e.getKey().getValue().getNamespace())) {
+                        list.add(e.getValue().getStackForRender());
+                    }
+                });
+            })
+            .build();
 
     Item CORN = register(new AliasedBlockItem(BakersBlocks.CORN, new Item.Settings().group(ItemGroup.MISC)), "corn");
     Item RYE = register(new AliasedBlockItem(BakersBlocks.RYE, new Item.Settings().group(ItemGroup.MISC)), "rye");

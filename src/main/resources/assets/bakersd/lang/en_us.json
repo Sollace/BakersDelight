@@ -46,5 +46,6 @@
   "block.bakersd.baking_soda": "Baking Soda",
   "block.bakersd.oak_bread_board": "Oak Bread Board",
   "tooltip.bakersd.once_baked": "Once baked: %s",
-  "tooltip.bakersd.slices": "%d of %d slices"
+  "tooltip.bakersd.slices": "%d of %d slices",
+  "itemGroup.bakersd.breads": "Baker's Delight"
 }
