@@ -25,7 +25,7 @@ public interface BakersItems {
             .appendItems(list -> {
                 Registry.ITEM.getEntries().forEach(e -> {
                     if ("bakersd".equals(e.getKey().getValue().getNamespace())) {
-                        list.add(e.getValue().getStackForRender());
+                        list.add(e.getValue().getDefaultStack());
                     }
                 });
             })

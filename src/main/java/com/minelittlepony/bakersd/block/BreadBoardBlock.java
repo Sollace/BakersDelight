@@ -34,16 +34,12 @@ import java.util.stream.Collectors;
 
 public class BreadBoardBlock extends OrientedBlock implements BlockEntityProvider {
 
-    private static final Map<Direction, VoxelShape> SHAPES;
-
-    static {
-        SHAPES = Arrays.stream(Direction.values())
+    private static final Map<Direction, VoxelShape> SHAPES = Arrays.stream(Direction.values())
             .filter(d -> d.getAxis() != Axis.Y)
             .collect(Collectors.toMap(
                     Function.identity(),
                     VoxelShapeUtil.rotator(Block.createCuboidShape(4, 0, 0, 12, 1, 16)))
             );
-    }
 
     public BreadBoardBlock(Settings settings) {
         super(settings);
