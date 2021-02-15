@@ -9,6 +9,7 @@
         "MixinGrindstoneContainer_2",
         "MixinAbstractFurnaceBlockEntity",
         "MixinModelLoader",
-        "RemainderSetter"
+        "MixinItem",
+        "MiinItemStack"
     ]
 }
