@@ -41,14 +41,14 @@ public class ShapedKneadingRecipe extends ShapedRecipe {
         @Override
         public ShapedRecipe read(Identifier id, JsonObject json) {
             ShapedRecipe recipe = super.read(id, json);
-            ItemStack baked = ShapedRecipe.getItemStack(JsonHelper.getObject(json, "baked"));
-            return new ShapedKneadingRecipe(id, recipe.getGroup(), recipe.getWidth(), recipe.getHeight(), recipe.getPreviewInputs(), recipe.getOutput(), baked);
+            ItemStack baked = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "baked"));
+            return new ShapedKneadingRecipe(id, recipe.getGroup(), recipe.getWidth(), recipe.getHeight(), recipe.getIngredients(), recipe.getOutput(), baked);
         }
 
         @Override
         public ShapedRecipe read(Identifier id, PacketByteBuf buffer) {
             ShapedRecipe recipe = super.read(id, buffer);
-            return new ShapedKneadingRecipe(id, recipe.getGroup(), recipe.getWidth(), recipe.getHeight(), recipe.getPreviewInputs(), recipe.getOutput(), buffer.readItemStack());
+            return new ShapedKneadingRecipe(id, recipe.getGroup(), recipe.getWidth(), recipe.getHeight(), recipe.getIngredients(), recipe.getOutput(), buffer.readItemStack());
         }
 
         @Override

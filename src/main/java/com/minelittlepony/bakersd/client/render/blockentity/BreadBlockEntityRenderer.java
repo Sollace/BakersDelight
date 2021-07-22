@@ -2,27 +2,25 @@ package com.minelittlepony.bakersd.client.render.blockentity;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.json.ModelTransformation;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.util.registry.Registry;
 
 import com.minelittlepony.bakersd.BreadModelLoader;
 import com.minelittlepony.bakersd.blockentity.BreadBlockEntity;
 
-public class BreadBlockEntityRenderer extends BlockEntityRenderer<BreadBlockEntity> {
+public class BreadBlockEntityRenderer implements BlockEntityRenderer<BreadBlockEntity> {
 
-    public BreadBlockEntityRenderer(BlockEntityRenderDispatcher dispatcher) {
-        super(dispatcher);
-    }
+    public BreadBlockEntityRenderer(BlockEntityRendererFactory.Context context) { }
 
     @Override
     public void render(BreadBlockEntity entity, float delta, MatrixStack matrices, VertexConsumerProvider provider, int light, int overlay) {
@@ -43,7 +41,7 @@ public class BreadBlockEntityRenderer extends BlockEntityRenderer<BreadBlockEnti
 
         matrices.translate(0.5, 0.56, 0.5);
 
-        matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(angle));
+        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(angle));
 
         ItemRenderer renderer = MinecraftClient.getInstance().getItemRenderer();
 

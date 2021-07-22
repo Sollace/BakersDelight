@@ -42,14 +42,14 @@ public class ShapelessKneadingRecipe extends ShapelessRecipe {
         @Override
         public ShapelessRecipe read(Identifier id, JsonObject json) {
             ShapelessRecipe recipe = super.read(id, json);
-            ItemStack baked = ShapedRecipe.getItemStack(JsonHelper.getObject(json, "baked"));
-            return new ShapelessKneadingRecipe(id, recipe.getGroup(), recipe.getOutput(), baked, recipe.getPreviewInputs());
+            ItemStack baked = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "baked"));
+            return new ShapelessKneadingRecipe(id, recipe.getGroup(), recipe.getOutput(), baked, recipe.getIngredients());
         }
 
         @Override
         public ShapelessRecipe read(Identifier id, PacketByteBuf buffer) {
             ShapelessRecipe recipe = super.read(id, buffer);
-            return new ShapelessKneadingRecipe(id, recipe.getGroup(), recipe.getOutput(), buffer.readItemStack(), recipe.getPreviewInputs());
+            return new ShapelessKneadingRecipe(id, recipe.getGroup(), recipe.getOutput(), buffer.readItemStack(), recipe.getIngredients());
         }
 
         @Override

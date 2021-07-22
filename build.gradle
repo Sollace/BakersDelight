@@ -1,34 +1,15 @@
 plugins {
   id 'java-library'
-  id 'fabric-loom' version '0.4-SNAPSHOT'
+  id 'fabric-loom' version '0.8-SNAPSHOT'
+  id 'org.ajoberstar.reckon' version '0.13.0'
 }
 
-targetCompatibility = JavaVersion.VERSION_1_8
-sourceCompatibility = JavaVersion.VERSION_1_8
-
-def createVersion() {
-  def parts = []
-
-  if (project.release != 'RELEASE') {
-    parts.push project.release
-  }
-
-  if (System.env.TRAVIS_BRANCH != null && System.env.TRAVIS_BRANCH != 'master') {
-    parts.push System.env.TRAVIS_BRANCH
-  }
-
-  if (System.env.TRAVIS_BRANCH != project.minecraft_version) {
-    parts.push project.minecraft_version
-  }
-
-  def ver = project.version
-  if (parts.size > 0) {
-    return ver + '-' + parts.join('-')
-  }
-  return ver
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(16)
+    }
 }
 
-version = createVersion()
 group = project.group
 description = project.displayname
 archivesBaseName = project.name
@@ -37,11 +18,17 @@ minecraft {
   refmapName = 'bakersd.mixin.refmap.json'
 }
 
-// check for updates every build when on CI
-if (System.env.CI) {
-  configurations.all {
-    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-  }
+reckon {
+    scopeFromProp()
+    stageFromProp('beta', 'rc', 'final')
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        name = 'modmenu'
+        url = 'https://maven.terraformersmc.com/releases'
+    }
 }
 
 dependencies {
@@ -49,23 +36,16 @@ dependencies {
   mappings "net.fabricmc:yarn:${project.yarn_mappings}"
   modApi "net.fabricmc:fabric-loader:${project.loader_version}"
 
-  compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+  modApi "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-  modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-  modImplementation "io.github.prospector:modmenu:${project.modmenu_version}"
+  modCompileOnly("com.terraformersmc:modmenu:${project.modmenu_version}")
 }
 
 processResources {
-  inputs.property "version", project.version
+  inputs.property "version", project.version.toString()
 
-  from(sourceSets.main.resources.srcDirs) {
-    include "fabric.mod.json"
-    expand "version": project.version
-  }
-
-  from(sourceSets.main.resources.srcDirs) {
-    exclude "fabric.mod.json"
+  filesMatching("fabric.mod.json") {
+    expand "version": project.version.toString()
   }
 
   from 'LICENSE'

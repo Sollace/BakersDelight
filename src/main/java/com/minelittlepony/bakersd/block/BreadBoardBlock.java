@@ -127,7 +127,6 @@ public class BreadBoardBlock extends OrientedBlock implements BlockEntityProvide
     }
 
     @Override
-    @Deprecated
     public int getWeakRedstonePower(BlockState state, BlockView view, BlockPos pos, Direction facing) {
         return ((BreadBlockEntity)view.getBlockEntity(pos)).getSlices();
     }
@@ -145,7 +144,7 @@ public class BreadBoardBlock extends OrientedBlock implements BlockEntityProvide
     }
 
     @Override
-    public BlockEntity createBlockEntity(BlockView view) {
-        return new BreadBlockEntity();
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new BreadBlockEntity(pos, state);
     }
 }

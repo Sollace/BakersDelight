@@ -1,13 +1,11 @@
 package com.minelittlepony.bakersd.recipe;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.block.Blocks;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeFinder;
+import net.minecraft.recipe.RecipeMatcher;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.ShapedRecipe;
@@ -36,8 +34,7 @@ public class MillingRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    @Environment(EnvType.CLIENT)
-    public ItemStack getRecipeKindIcon() {
+    public ItemStack createIcon() {
        return new ItemStack(Blocks.GRINDSTONE);
     }
 
@@ -48,30 +45,30 @@ public class MillingRecipe implements Recipe<Inventory> {
 
     @Override
     public boolean matches(Inventory inv, World world) {
-        RecipeFinder recipeFinder = new RecipeFinder();
+        RecipeMatcher recipeFinder = new RecipeMatcher();
         int i = 0;
 
         for(int j = 0; j < inv.size(); ++j) {
            ItemStack itemStack = inv.getStack(j);
            if (!itemStack.isEmpty()) {
               i++;
-              recipeFinder.addItem(itemStack);
+              recipeFinder.addInput(itemStack);
            }
         }
 
-        return i == input.size() && recipeFinder.findRecipe(this, null);
+        return i == input.size() && recipeFinder.match(this, null);
     }
 
     @Override
     public ItemStack craft(Inventory inv) {
-        RecipeFinder recipeFinder = new RecipeFinder();
+        RecipeMatcher recipeFinder = new RecipeMatcher();
 
         for(int j = 0; j < inv.size(); ++j) {
-           recipeFinder.addItem(inv.getStack(j));
+           recipeFinder.addInput(inv.getStack(j));
         }
 
         ItemStack output = getOutput().copy();
-        int count = recipeFinder.countRecipeCrafts(this, null);
+        int count = recipeFinder.countCrafts(this, null);
         output.setCount(output.getCount() * count);
 
         return output;
@@ -83,7 +80,7 @@ public class MillingRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public DefaultedList<Ingredient> getPreviewInputs() {
+    public DefaultedList<Ingredient> getIngredients() {
         return this.input;
     }
 
@@ -115,7 +112,7 @@ public class MillingRecipe implements Recipe<Inventory> {
                 throw new JsonParseException("Too many ingredients for shapeless recipe");
             }
 
-            return new MillingRecipe(identifier, defaultedList, ShapedRecipe.getItemStack(JsonHelper.getObject(jsonObject, "result")));
+            return new MillingRecipe(identifier, defaultedList, ShapedRecipe.outputFromJson(JsonHelper.getObject(jsonObject, "result")));
         }
 
         private static DefaultedList<Ingredient> getIngredients(JsonArray json) {

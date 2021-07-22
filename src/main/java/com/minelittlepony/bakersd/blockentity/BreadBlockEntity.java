@@ -2,45 +2,42 @@ package com.minelittlepony.bakersd.blockentity;
 
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
 
 import com.minelittlepony.bakersd.BakersBlockEntities;
 import com.minelittlepony.bakersd.BakersTags;
 import com.minelittlepony.bakersd.item.BreadItem;
-
-import javax.annotation.Nullable;
 
 public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEntityClientSerializable {
 
     private int slices;
     private ItemStack item = ItemStack.EMPTY;
 
-    public BreadBlockEntity() {
-        super(BakersBlockEntities.BREAD_BOARD);
+    public BreadBlockEntity(BlockPos pos, BlockState state) {
+        super(BakersBlockEntities.BREAD_BOARD, pos, state);
     }
 
     @Override
-    public void fromTag(BlockState state, CompoundTag tag) {
-        super.fromTag(state, tag);
+    public void readNbt(NbtCompound tag) {
+        super.readNbt(tag);
         slices = tag.getInt("slices");
-        item = ItemStack.fromTag(tag.getCompound("item"));
+        item = ItemStack.fromNbt(tag.getCompound("item"));
     }
 
     @Override
-    public CompoundTag toTag(CompoundTag tag) {
-        tag = super.toTag(tag);
+    public NbtCompound writeNbt(NbtCompound tag) {
+        tag = super.writeNbt(tag);
         tag.putInt("slices", slices);
-        tag.put("item", item.toTag(new CompoundTag()));
+        tag.put("item", item.writeNbt(new NbtCompound()));
         return tag;
     }
 
@@ -52,15 +49,8 @@ public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEnt
         return item;
     }
 
-    @Override public void fromClientTag(CompoundTag tag) {fromTag(Blocks.AIR.getDefaultState(), tag);}
-    @Override public CompoundTag toClientTag(CompoundTag tag) {return toTag(tag);}
-    @Override public CompoundTag toInitialChunkDataTag() { return toTag(new CompoundTag()); }
-
-    @Override
-    @Nullable
-    public BlockEntityUpdateS2CPacket toUpdatePacket() {
-        return new BlockEntityUpdateS2CPacket(pos, 127, toInitialChunkDataTag());
-    }
+    @Override public void fromClientTag(NbtCompound tag) {readNbt(tag);}
+    @Override public NbtCompound toClientTag(NbtCompound tag) {return writeNbt(tag);}
 
     public ActionResult activate(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
@@ -68,7 +58,7 @@ public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEnt
             stack = stack.copy();
         }
 
-        if (item.isEmpty() && stack.getItem().isIn(BakersTags.SLICEABLE)) {
+        if (item.isEmpty() && stack.isIn(BakersTags.SLICEABLE)) {
             setStack(0, stack.split(1));
             player.playSound(SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 1, 1);
 

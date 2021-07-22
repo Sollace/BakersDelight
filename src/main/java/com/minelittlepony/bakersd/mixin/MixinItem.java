@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
@@ -13,8 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.minelittlepony.bakersd.recipe.remainder.RecipeRemainderContext;
 import com.minelittlepony.bakersd.recipe.remainder.RemainderSetter;
 import com.minelittlepony.bakersd.recipe.remainder.StackDelegate;
-
-import javax.annotation.Nullable;
 
 import java.util.function.Function;
 
