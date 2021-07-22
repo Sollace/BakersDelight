@@ -110,10 +110,10 @@ public class BreadBoardBlock extends OrientedBlock implements BlockEntityProvide
             arm = arm.getOpposite();
         }
 
-        switch (arm) {
-            case RIGHT: return dir.rotateYCounterclockwise();
-            default: return dir.rotateYClockwise();
+        if (arm == Arm.RIGHT) {
+            return dir.rotateYCounterclockwise();
         }
+        return dir.rotateYClockwise();
     }
 
     @Override
