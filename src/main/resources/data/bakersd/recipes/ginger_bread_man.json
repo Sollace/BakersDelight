@@ -1,0 +1,15 @@
+{
+  "type": "bakersd:kneading_shaped",
+  "group": "baking",
+  "pattern": [
+    " o ",
+    "ooo",
+    " o "
+  ],
+  "key": {
+    "o": { "tag": "bakersd:doughs" },
+    "g": { "item": "bakersd:ginger" }
+  },
+  "result": { "item": "bakersd:gingerbread_dough", "count": 3 },
+  "baked": { "item": "bakersd:gingerbread_man" }
+}

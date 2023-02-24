@@ -1,0 +1,14 @@
+{
+  "type": "bakersd:kneading_shaped",
+  "group": "baking",
+  "pattern": [
+    "bob",
+    "obo"
+  ],
+  "key": {
+    "o": { "item": "bakersd:rye_dough" },
+    "b": { "item": "bakersd:banana" }
+  },
+  "result": { "item": "bakersd:rye_dough" },
+  "baked": { "item": "bakersd:raisin_bread" }
+}

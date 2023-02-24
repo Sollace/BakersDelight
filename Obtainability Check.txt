@@ -1,0 +1,55 @@
+
+Uncraftable:
+
+BANANA
+
+YEAST
+BAKING_SODA
+GINGER
+
+SOURDOUGH_BREAD
+
+Craftable:
+
+stick + planks ->(crafting)-> OAK_BREAD_BOARD
+wooden_buttons + planks ->(crafting)-> ROLLING_PIN
+(farmed)-> RYE ->(grinding)-> RYE_FLOUR
+    + YEAST + egg + water ->(crafting) -> RYE_DOUGH
+      ->(crafting)+(furnace)-> RYE_BREAD
+      ->(crafting)+(furnace)-> BANANA_BREAD
+(farmed)-> CORN ->(grinding) -> CORN_FLOUR
+    + BAKING_SODA + egg + water ->(crafting)-> CORN_BREAD_DOUGH
+      ->(crafting)+(furnace)-> TORTILLA
+      ->(crafting)+(furnace)-> POLENTA_LOAF
+sweet_berries ->(furnace)-> RAISINS
+
+wheat (grinding)-> WHOLEGRAIN_FLOUR
+    + YEAST + egg + water ->(crafting)-> WHOLEGRAIN_DOUGH
+      ->(crafting)+(furnace)-> WHOLEGRAIN_BREAD
+wheat_seeds (grinding)-> WHEAT_FLOUR
+    ->(milling) -> WHITE_FLOUR
+        + BAKING_SODA + egg + water ->(crafting)-> WHITE_SODA_BREAD_DOUGH
+          ->(crafting)+(furnace)-> SODA_BREAD
+        + YEAST + egg + water ->(crafting)-> WHITE_DOUGH
+          ->(crafting)+(furnace)-> BAGEL
+          ->(crafting)+(furnace)-> PITA_BREAD
+          ->(crafting)+(furnace)-> WHITE_BREAD
+          ->(furnace)-> BUN
+            + WHITE_FLOUR ->(crafting)-> PORTUGUESE_ROLL
+        + WHEAT_FLOUR ->(crafting)-> BROWN_FLOUR
+          + YEAST + egg + water ->(crafting) -> BROWN_DOUGH
+            ->(crafting)+(furnace)-> BROWN_BREAD
+            ->(crafting)+(furnace)-> RAISIN_BREAD
+    + YEAST + egg + water ->(crafting) -> WHEAT_DOUGH
+      + WHOLEGRAIN_FLOUR ->(crafting)+(furnace)-> TRESSE
+      + stick ->(crafting)+(furnace)-> BREAD_STICK
+      + bowl ->(crafting)-> GRITS
+      + wheat_seeds ->(crafting)+(furnace)-> CIABATTA_BREAD
+      ->(crafting)+(furnace)-> PRETZEL
+      ->(crafting)+(furnace)-> WHEAT_BREAD
+      ->(crafting)+(furnace)-> CROISSANT
+        + cocoa_beans ->(crafting)-> CHOCOLATE_CROISSANT
+      ->(crafting)+(furnace)-> BAGUETTE
+
+any DOUGH ->(blast furnace)-> charcoal
+any DOUGH + GINGER ->(crafting)+(furnace)-> GINGERBREAD_MAN / GINGERBREAD_WOMAN

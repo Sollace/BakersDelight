@@ -2,7 +2,7 @@
   "type": "crafting_shapeless",
   "group": "topping",
   "ingredients": [
-  	{ "item": "bakersd:white_flour" },
+  	  { "item": "bakersd:white_flour" },
     { "item": "bakersd:bun" }
   ],
   "result": {

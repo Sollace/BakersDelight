@@ -2,10 +2,10 @@
   "type": "crafting_shapeless",
   "group": "flour",
   "ingredients": [
-  	{ "item": "bakersd:white_flour" },
-  	{ "item": "bakersd:white_flour" },
-  	{ "item": "bakersd:white_flour" },
-  	{ "item": "bakersd:white_flour" },
+  	  { "item": "bakersd:white_flour" },
+  	  { "item": "bakersd:white_flour" },
+  	  { "item": "bakersd:white_flour" },
+  	  { "item": "bakersd:white_flour" },
     { "item": "bakersd:wheat_flour" }
   ],
   "result": { "item": "bakersd:brown_flour" }

@@ -1,0 +1,14 @@
+{
+  "type": "bakersd:kneading_shaped",
+  "group": "baking",
+  "pattern": [
+    " o ",
+    "o o",
+    " o "
+  ],
+  "key": {
+    "o": { "item": "bakersd:wheat_dough" }
+  },
+  "result": { "item": "bakersd:wheat_dough", "count": 3 },
+  "baked": { "item": "bakersd:pretzel" }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "-oo"
+  ],
+  "key": {
+    "-": { "item": "minecraft:stick" },
+    "o": { "tag": "minecraft:planks" }
+  },
+  "result": { "item": "bakersd:oak_bread_board" }
+}

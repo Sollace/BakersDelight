@@ -1,0 +1,14 @@
+{
+  "type": "bakersd:kneading_shaped",
+  "group": "baking",
+  "pattern": [
+    "ioi",
+    "oio"
+  ],
+  "key": {
+    "o": { "item": "bakersd:brown_dough" },
+    "i": { "item": "bakersd:raisins" }
+  },
+  "result": { "item": "bakersd:brown_dough" },
+  "baked": { "item": "bakersd:raisin_bread" }
+}

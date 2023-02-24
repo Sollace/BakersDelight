@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "baking",
+  "ingredients": [
+    { "item": "bakersd:gingerbread_man" },
+    { "item": "bakersd:shears" }
+  ],
+  "result": { "item": "bakersd:gingerbread_woman" }
+}
