@@ -24,7 +24,7 @@ public class BoxBlock extends OrientedBlock {
     private final VoxelShape shape;
 
     public BoxBlock(Vec3d dimensions, Settings settings) {
-        super(settings.offsetType(OffsetType.XZ));
+        super(settings.offsetType(OffsetType.XZ).dynamicBounds());
 
         shape = createCuboidShape(
                 8 - dimensions.x/2, 0,            8 - dimensions.z/2,

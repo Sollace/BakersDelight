@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.client.render.model.ModelLoader;
 import net.minecraft.client.render.model.UnbakedModel;
 import net.minecraft.client.util.ModelIdentifier;
-import net.minecraft.resource.ResourceManager;
 
 /**
  * Event triggered when a vanilla item/block model is queued to be loaded into the game.
@@ -37,11 +36,6 @@ public interface ModelLoadedCallback {
          * Returns the vanilla ModelLoader instance. This can be used to load custom models if needed.
          */
         ModelLoader getVanillaLoader();
-
-        /**
-         * Returns the game's resource manager.
-         */
-        ResourceManager getResourceManager();
 
         /**
          * Emits an unbaked model back into the ModelLoader to make it visible to the rest of the game.

@@ -1,5 +1,6 @@
 package com.minelittlepony.bakersd;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.util.Identifier;
 
@@ -16,10 +17,12 @@ public class BreadModelLoader implements ModelLoadedCallback {
 
         for (int sliceCount = 1; sliceCount <= BreadItem.MAX_SLICES; sliceCount++) {
             Identifier breadId = new Identifier(id.getNamespace(), "bread/" + id.getPath() + (sliceCount == BreadItem.MAX_SLICES ? "" : "_slices_" + sliceCount));
-
-            if (loader.getResourceManager().getResource(new Identifier(breadId.getNamespace(), "models/" + breadId.getPath() + ".json")).isPresent()) {
-                loader.emitUnbakedModel(getModelId(id, sliceCount), loader.getVanillaLoader().getOrLoadModel(breadId));
-            }
+            int slice = sliceCount;
+            MinecraftClient.getInstance().getResourceManager()
+                .getResource(new Identifier(breadId.getNamespace(), "models/" + breadId.getPath() + ".json"))
+                .ifPresent(resource -> {
+                    loader.emitUnbakedModel(getModelId(id, slice), loader.getVanillaLoader().getOrLoadModel(breadId));
+                });
         }
     }
 

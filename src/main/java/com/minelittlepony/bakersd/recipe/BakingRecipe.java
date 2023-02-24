@@ -8,11 +8,15 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.book.CookingRecipeCategory;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
 import com.minelittlepony.bakersd.item.DoughItem;
 
 public class BakingRecipe extends AbstractCookingRecipe {
+
+
+    private ItemStack preparedOutput = ItemStack.EMPTY;
 
     protected BakingRecipe(Identifier id, String group, CookingRecipeCategory category, Ingredient input, ItemStack output, float experience, int cookTime) {
         super(RecipeType.SMELTING, id, group, category, input, output, experience, cookTime);
@@ -34,13 +38,17 @@ public class BakingRecipe extends AbstractCookingRecipe {
         return DoughItem.getBakedItem(stack).map(ItemStack::new).orElse(super.craft(inv));
     }
 
+    public void prepare(DefaultedList<ItemStack> inventory) {
+        preparedOutput = DoughItem.getBakedItem(inventory.get(0)).map(ItemStack::new).orElse(ItemStack.EMPTY);
+    }
+
     public Ingredient getInput() {
         return input;
     }
 
     @Override
     public ItemStack getOutput() {
-        return output;
+        return preparedOutput.isEmpty() ? output : preparedOutput;
     }
 
     public static class Serializer extends BakingRecipeSerializer<BakingRecipe> {
