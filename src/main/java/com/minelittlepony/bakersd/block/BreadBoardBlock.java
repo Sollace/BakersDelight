@@ -131,6 +131,7 @@ public class BreadBoardBlock extends OrientedBlock implements BlockEntityProvide
         return ((BreadBlockEntity)view.getBlockEntity(pos)).getSlices();
     }
 
+    @Deprecated
     @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {

@@ -17,14 +17,14 @@ public class BreadModelLoader implements ModelLoadedCallback {
         for (int sliceCount = 1; sliceCount <= BreadItem.MAX_SLICES; sliceCount++) {
             Identifier breadId = new Identifier(id.getNamespace(), "bread/" + id.getPath() + (sliceCount == BreadItem.MAX_SLICES ? "" : "_slices_" + sliceCount));
 
-            if (loader.getResourceManager().containsResource(new Identifier(breadId.getNamespace(), "models/" + breadId.getPath() + ".json"))) {
+            if (loader.getResourceManager().getResource(new Identifier(breadId.getNamespace(), "models/" + breadId.getPath() + ".json")).isPresent()) {
                 loader.emitUnbakedModel(getModelId(id, sliceCount), loader.getVanillaLoader().getOrLoadModel(breadId));
             }
         }
     }
 
     public static ModelIdentifier getModelId(Identifier id, int sliceCount) {
-        return new ModelIdentifier(id.getNamespace() + ":" + id.getPath() + (sliceCount == BreadItem.MAX_SLICES ? "" : "_slices_" + sliceCount), "bread");
+        return new ModelIdentifier(id.getNamespace(), id.getPath() + (sliceCount == BreadItem.MAX_SLICES ? "" : "_slices_" + sliceCount), "bread");
     }
 
 }

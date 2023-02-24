@@ -12,8 +12,8 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3f;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.util.math.RotationAxis;
+import net.minecraft.registry.Registries;
 
 import com.minelittlepony.bakersd.BreadModelLoader;
 import com.minelittlepony.bakersd.blockentity.BreadBlockEntity;
@@ -41,11 +41,11 @@ public class BreadBlockEntityRenderer implements BlockEntityRenderer<BreadBlockE
 
         matrices.translate(0.5, 0.56, 0.5);
 
-        matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(angle));
+        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(angle));
 
         ItemRenderer renderer = MinecraftClient.getInstance().getItemRenderer();
 
-        ModelIdentifier modelId = BreadModelLoader.getModelId(Registry.ITEM.getId(stack.getItem()), entity.getSlices());
+        ModelIdentifier modelId = BreadModelLoader.getModelId(Registries.ITEM.getId(stack.getItem()), entity.getSlices());
 
         BakedModel bakedModel = renderer.getModels().getModelManager().getModel(modelId);
         renderer.renderItem(stack, ModelTransformation.Mode.FIXED, false, matrices, provider, light, overlay, bakedModel);

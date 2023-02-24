@@ -6,6 +6,7 @@ import net.minecraft.recipe.AbstractCookingRecipe;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.recipe.book.CookingRecipeCategory;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -13,8 +14,8 @@ import com.minelittlepony.bakersd.item.DoughItem;
 
 public class BakingRecipe extends AbstractCookingRecipe {
 
-    protected BakingRecipe(Identifier id, String group, Ingredient input, ItemStack output, float experience, int cookTime) {
-        super(RecipeType.SMELTING, id, group, input, output, experience, cookTime);
+    protected BakingRecipe(Identifier id, String group, CookingRecipeCategory category, Ingredient input, ItemStack output, float experience, int cookTime) {
+        super(RecipeType.SMELTING, id, group, category, input, output, experience, cookTime);
     }
 
     @Override

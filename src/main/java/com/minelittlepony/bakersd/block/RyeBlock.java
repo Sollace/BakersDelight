@@ -6,14 +6,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
 import net.minecraft.block.ShapeContext;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
-import net.minecraft.util.Lazy;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
-
-import java.util.function.Supplier;
 
 public class RyeBlock extends CropBlock {
 
@@ -28,17 +24,17 @@ public class RyeBlock extends CropBlock {
             Block.createCuboidShape(0, 0, 0, 16, 16, 16)
     };
 
-    private final Lazy<Item> seeds;
+    private final ItemConvertible seeds;
 
-    public RyeBlock(Block.Settings settings, Supplier<Item> seedSupplier) {
+    public RyeBlock(Block.Settings settings, ItemConvertible seeds) {
        super(settings);
-       seeds = new Lazy<>(seedSupplier);
+       this.seeds = seeds;
     }
 
     @Override
     @Environment(EnvType.CLIENT)
     protected ItemConvertible getSeedsItem() {
-       return seeds.get();
+       return seeds;
     }
 
     @Override

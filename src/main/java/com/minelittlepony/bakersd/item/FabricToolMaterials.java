@@ -2,7 +2,8 @@ package com.minelittlepony.bakersd.item;
 
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.util.Lazy;
+
+import com.google.common.base.Suppliers;
 
 import java.util.function.Supplier;
 
@@ -13,7 +14,7 @@ public class FabricToolMaterials implements ToolMaterial {
     private final float miningSpeed;
     private final float attackDamage;
     private final int enchantability;
-    private final Lazy<Ingredient> repairIngredient;
+    private final Supplier<Ingredient> repairIngredient;
 
     private FabricToolMaterials(int miningLevel, int itemDurability, float miningSpeed, float attackDamage, int enchantibility, Supplier<Ingredient> repairIngredient) {
         this.miningLevel = miningLevel;
@@ -21,7 +22,7 @@ public class FabricToolMaterials implements ToolMaterial {
         this.miningSpeed = miningSpeed;
         this.attackDamage = attackDamage;
         this.enchantability = enchantibility;
-        this.repairIngredient = new Lazy<>(repairIngredient);
+        this.repairIngredient = Suppliers.memoize(repairIngredient::get);
     }
 
     @Override

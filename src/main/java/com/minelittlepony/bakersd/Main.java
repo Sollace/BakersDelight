@@ -5,9 +5,10 @@ import org.apache.logging.log4j.Logger;
 
 import com.minelittlepony.bakersd.recipe.BakersRecipes;
 
+import java.util.List;
+
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.loot.v1.FabricLootSupplier;
-import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.loot.LootTable;
 import net.minecraft.util.Identifier;
 
@@ -22,7 +23,7 @@ public class Main implements ModInitializer {
         BakersTags.bootstrap();
         BakersItems.bootstrap();
 
-        LootTableLoadingCallback.EVENT.register((res, manager, id, supplier, setter) -> {
+        LootTableEvents.MODIFY.register((res, manager, id, supplier, setter) -> {
             if (!"minecraft".contentEquals(id.getNamespace())) {
                 return;
             }
@@ -30,7 +31,7 @@ public class Main implements ModInitializer {
             Identifier modId = new Identifier("bakersdmc", id.getPath());
             LootTable table = manager.getTable(modId);
             if (table != LootTable.EMPTY) {
-                supplier.withPools(((FabricLootSupplier)table).getPools());
+                supplier.pools(List.of(table.pools));
             }
         });
     }

@@ -5,25 +5,22 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.util.math.random.Random;
 
 import com.minelittlepony.bakersd.BakersSounds;
-import com.minelittlepony.bakersd.recipe.remainder.RemainderSetter;
-
-import java.util.Random;
 
 public class RollingPinItem extends SwordItem {
-
-    private static final Random RANDOM = new Random();
+    private static final Random RANDOM = Random.create();
 
     public RollingPinItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
        super(material, attackDamage, attackSpeed, settings);
-       ((RemainderSetter)this).setRecipeRemainder(stack -> {
+    }
 
-           stack = stack.copy();
-           stack.damage(1, RANDOM, null);
-
-           return stack;
-       });
+    @Override
+    public ItemStack getRecipeRemainder(ItemStack stack) {
+        stack = stack.copy();
+        stack.damage(1, RANDOM, null);
+        return stack;
     }
 
     @Override

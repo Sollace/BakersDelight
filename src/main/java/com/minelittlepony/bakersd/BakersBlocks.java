@@ -4,7 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.Registries;
 
 import com.minelittlepony.bakersd.block.BoxBlock;
 import com.minelittlepony.bakersd.block.BreadBoardBlock;
@@ -38,6 +39,6 @@ public interface BakersBlocks {
                 ), "corn");
 
     static <T extends Block> T register(T block, String name) {
-        return (T)Registry.register(Registry.BLOCK, new Identifier("bakersd", name), block);
+        return Registry.register(Registries.BLOCK, new Identifier("bakersd", name), block);
     }
 }

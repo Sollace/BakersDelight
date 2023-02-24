@@ -1,6 +1,5 @@
 package com.minelittlepony.bakersd.blockentity;
 
-import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -8,6 +7,9 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.Packet;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -17,7 +19,7 @@ import com.minelittlepony.bakersd.BakersBlockEntities;
 import com.minelittlepony.bakersd.BakersTags;
 import com.minelittlepony.bakersd.item.BreadItem;
 
-public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEntityClientSerializable {
+public class BreadBlockEntity extends BlockEntity implements Inventory {
 
     private int slices;
     private ItemStack item = ItemStack.EMPTY;
@@ -34,11 +36,22 @@ public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEnt
     }
 
     @Override
-    public NbtCompound writeNbt(NbtCompound tag) {
-        tag = super.writeNbt(tag);
+    public void writeNbt(NbtCompound tag) {
+        super.writeNbt(tag);
         tag.putInt("slices", slices);
         tag.put("item", item.writeNbt(new NbtCompound()));
-        return tag;
+    }
+
+    @Override
+    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this);
+    }
+
+    @Override
+    public NbtCompound toInitialChunkDataNbt() {
+        NbtCompound compound = new NbtCompound();
+        writeNbt(compound);
+        return compound;
     }
 
     public int getSlices() {
@@ -48,9 +61,6 @@ public class BreadBlockEntity extends BlockEntity implements Inventory, BlockEnt
     public ItemStack getStack() {
         return item;
     }
-
-    @Override public void fromClientTag(NbtCompound tag) {readNbt(tag);}
-    @Override public NbtCompound toClientTag(NbtCompound tag) {return writeNbt(tag);}
 
     public ActionResult activate(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);

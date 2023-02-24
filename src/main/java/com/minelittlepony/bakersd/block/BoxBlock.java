@@ -1,6 +1,5 @@
 package com.minelittlepony.bakersd.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.sound.BlockSoundGroup;
@@ -25,16 +24,11 @@ public class BoxBlock extends OrientedBlock {
     private final VoxelShape shape;
 
     public BoxBlock(Vec3d dimensions, Settings settings) {
-        super(settings);
+        super(settings.offsetType(OffsetType.XZ));
 
         shape = createCuboidShape(
                 8 - dimensions.x/2, 0,            8 - dimensions.z/2,
                 dimensions.x/2 + 8, dimensions.y, dimensions.z/2 + 8);
-    }
-
-    @Override
-    public Block.OffsetType getOffsetType() {
-        return Block.OffsetType.XZ;
     }
 
     @Override

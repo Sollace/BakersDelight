@@ -57,7 +57,7 @@ abstract class MixinGrindstoneContainer_2 extends Slot {
             cancellable = true
     )
     public void onCanInsert(ItemStack stack, CallbackInfoReturnable<Boolean> info) {
-        if (BakersTags.CRUSHABLES.contains(stack.getItem())) {
+        if (stack.isIn(BakersTags.CRUSHABLES)) {
             info.setReturnValue(true);
         }
     }

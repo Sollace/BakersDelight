@@ -5,7 +5,8 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.recipe.ShapelessRecipe;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.Registries;
 
 public interface BakersRecipesSerializers {
     RecipeSerializer<MillingRecipe> MILLING = register(new Identifier("bakersd", "milling"), new MillingRecipe.Serializer());
@@ -14,7 +15,7 @@ public interface BakersRecipesSerializers {
     RecipeSerializer<ShapedRecipe> SHAPED = register(new Identifier("bakersd", "kneading_shaped"), new ShapedKneadingRecipe.Serializer());
 
     static <S extends RecipeSerializer<T>, T extends Recipe<?>> S register(Identifier id, S serializer) {
-        return (S)Registry.register(Registry.RECIPE_SERIALIZER, id, serializer);
+        return (S)Registry.register(Registries.RECIPE_SERIALIZER, id, serializer);
     }
 
     static void bootstrap() {}
